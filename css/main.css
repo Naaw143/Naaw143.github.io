@@ -1194,7 +1194,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff34;
+  background: #ffb9d9;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2206,7 +2206,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .header-inner {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
   border-radius: 0px 0px 20px 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   overflow: hidden;
@@ -2239,7 +2239,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .content-wrap {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
   border-radius: 20px 20px 20px 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-sizing: border-box;
@@ -2397,7 +2397,7 @@ ul.breadcrumb li + li:last-child {
   display: none;
 }
 .sidebar-inner {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
   border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   box-sizing: border-box;
