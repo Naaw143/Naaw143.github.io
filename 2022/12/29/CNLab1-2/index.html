@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="lab1-1 Wireshark_Intro_v7.0, Ztrura">
-    <meta name="description" content="计算机网络抓包实验1-1。">
+    <meta name="keywords" content="lab1-2 Wireshark-protocal layers, Ztrura">
+    <meta name="description" content="计算机网络抓包实验1-2。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>lab1-1 Wireshark_Intro_v7.0 | Ztrura</title>
+    <title>lab1-2 Wireshark-protocal layers | Ztrura</title>
     <link rel="icon" type="image/png" href="/dog.png">
     
 
@@ -334,12 +334,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">lab1-1 Wireshark_Intro_v7.0</h1>
+                    <h1 class="description center-align post-title">lab1-2 Wireshark-protocal layers</h1>
                 </div>
             </div>
         </div>
@@ -406,7 +406,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    888
+                    1.9k
                 </div>
                 
 
@@ -431,59 +431,96 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Lab1-1-Getting-Started"><a href="#Lab1-1-Getting-Started" class="headerlink" title="Lab1-1 Getting Started"></a>Lab1-1 Getting Started</h2><h4 id="1-Getting-Wireshark"><a href="#1-Getting-Wireshark" class="headerlink" title="1 Getting Wireshark"></a>1 Getting Wireshark</h4><p>从 <a target="_blank" rel="noopener" href="http://www.wireshark.org/download.html">http://www.wireshark.org/download.html</a> 下载并安装Wireshark。</p>
-<h4 id="2-Running-Wireshark"><a href="#2-Running-Wireshark" class="headerlink" title="2 Running Wireshark"></a>2 Running Wireshark</h4><p>Wireshark初始界面：</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127193758653.png" alt="image-20221127193758653"></p>
-<p>双击接口名称即可进入对应接口进行抓包，如进入WLAN接口：</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127194333009.png" alt="image-20221127194333009"></p>
-<p>抓包界面可大致分为以下五部分：</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127200002502.png" alt="image-20221127200002502"></p>
-<ol>
-<li>命令菜单：常用的是”文件“和”捕获“菜单。“文件”菜单可以保存抓包数据，也可以打开以前的抓包数据文件，还有退出Wireshark应用程序等。“捕获”菜单可以允许我们开始或停止抓包。</li>
-<li>数据包列表窗口：显示每一个捕获包的一行摘要，包括包号、数据包被捕获的时间、数据包的源地址和目的地址、协议类型以及数据包中包含的特定于协议的信息。</li>
-<li>包头详细信息窗口：提供了包列表窗口中选中的包的详细信息。这些详细信息包括以太网帧(假设数据包通过以太网接口发送&#x2F;接收)和包含该数据包的IP数据报的信息。</li>
-<li>数据包内容窗口：以ASCII和十六进制格式显示捕获帧的全部内容。</li>
-<li>包过滤显示区域：可以在其中输入协议名或其他信息，以便过滤包列表窗口(以及包头和包内容窗口)中显示的信息。</li>
-</ol>
-<h4 id="3-Taking-Wireshark-for-a-Test-Run"><a href="#3-Taking-Wireshark-for-a-Test-Run" class="headerlink" title="3 Taking Wireshark for a Test Run"></a>3 Taking Wireshark for a Test Run</h4><p>试运行Wireshark来学习其使用流程。</p>
-<ol>
-<li><p>打开浏览器。</p>
+                <h2 id="Lab1-2-Protocol-Layers"><a href="#Lab1-2-Protocol-Layers" class="headerlink" title="Lab1-2 Protocol Layers"></a>Lab1-2 Protocol Layers</h2><h4 id="1-Objective"><a href="#1-Objective" class="headerlink" title="1 Objective"></a>1 Objective</h4><p>了解如何在数据包中表示协议和分层。</p>
+<h4 id="2-Requirements"><a href="#2-Requirements" class="headerlink" title="2 Requirements"></a>2 Requirements</h4><p>实验指导书中该部分分为Wireshark软件安装和wget（或curl）安装，Wireshark安装之前已经记录过了，这里就只写wget的获取了。</p>
+<h5 id="2-1-下载安装wget"><a href="#2-1-下载安装wget" class="headerlink" title="2.1 下载安装wget"></a>2.1 下载安装wget</h5><p>前往<a target="_blank" rel="noopener" href="https://eternallybored.org/misc/wget/">GNU Wget 1.21.3 for Windows (eternallybored.org)</a>下载wget，这里选择了1.21.3–64bit–ZIP。</p>
+<h5 id="2-2-配置环境变量"><a href="#2-2-配置环境变量" class="headerlink" title="2.2 配置环境变量"></a>2.2 配置环境变量</h5><p>将文件解压到的路径添加至环境变量。</p>
+<h5 id="2-3-测试"><a href="#2-3-测试" class="headerlink" title="2.3 测试"></a>2.3 测试</h5><p>若成功显示wget版本即说明安装成功。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221128221711788.png" alt="image-20221128221711788"></p>
+<h4 id="3-Steps"><a href="#3-Steps" class="headerlink" title="3 Steps"></a>3 Steps</h4><h5 id="Step-1-Capture-a-Trace"><a href="#Step-1-Capture-a-Trace" class="headerlink" title="Step 1: Capture a Trace"></a>Step 1: Capture a Trace</h5><ol>
+<li><p>使用wget获取输入的URL的资源，如果状态代码为”200 OK“则说明获取成功，如下图。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129034710216.png" alt="image-20221129034710216"></p>
 </li>
-<li><p>打开Wireshark软件。</p>
+<li><p>关闭不必要的浏览器选项卡和窗口，通过最小化浏览器活动来阻止计算机获取不必要的web内容，避免在追踪过程中的偶然的流量。</p>
 </li>
-<li><p>选择“捕获”下拉菜单并选择“选项”，打开”Wireshark·捕获选项“。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127202204806.png" alt="image-20221127202204806"></p>
+<li><p>启动Wireshark，用”tcp port 80“过滤器开始抓包，并在选项窗口里勾选”Resolve network names“。这个过滤器将只记录标准的网络流量，而不记录计算机可能发送的其他类型的包。勾选的作用是将把发送和接收数据包的计算机的地址转换为名称，这将帮助我们识别数据包是发送到计算机的还是计算机发送出去的。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221128223758803.png" alt="image-20221128223758803"></p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221128223906894.png" alt="image-20221128223906894"></p>
 </li>
-<li><p>选中要开始抓包的接口，然后点击”开始“。</p>
+<li><p>抓包开始时，使用wget重复web获取，这次的报文就会在传输过程中会被Wireshark记录下来。</p>
 </li>
-<li><p>开始抓包之后，选择“抓包”下拉菜单并选择“停止”，可以停止抓包（但是现在先不要停止抓包）。</p>
-</li>
-<li><p>当Wireshark正在运行时，在浏览器中打开：<a target="_blank" rel="noopener" href="http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-filel.html%E3%80%82%E4%B8%BA%E4%BA%86%E6%98%BE%E7%A4%BA%E6%AD%A4%E9%A1%B5%E9%9D%A2%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B0%86%E5%9C%A8">http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-filel.html。为了显示此页面，浏览器将在</a> <em>gaia.cs.umass.edu</em> 与HTTP服务器联系，并与服务器交换HTTP消息以下载此页面。包含这些HTTP消息的以太网帧(以及通过以太网适配器的所有其他帧)将被Wireshark捕获。</p>
-</li>
-<li><p>在浏览器显示下面的页面后，点击停止按钮，现在可以在已捕获包列表中看到通过这个网络接口的所有的数据包。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127203421287.png" alt="image-20221127203421287"></p>
-</li>
-<li><p>在应用显示过滤器窗口中输入“http”，然后选择Apply(在输入“http”的右侧)。这将导致在包列表窗口中只显示HTTP消息。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127203915269.png" alt="image-20221127203915269"></p>
-</li>
-<li><p>查看HTTP GET信息。当选择HTTP GET消息时，将在报文报头窗口中显示以太网帧、IP数据报、TCP段和HTTP消息报头信息。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127204445952.png" alt="image-20221127204445952"></p>
-</li>
-<li><p>退出Wireshark。</p>
+<li><p>获取成功后，返回Wireshark并停止抓包。如果成功了的话，Wireshark窗口将显示多个包。捕获的包的个数取决于web页面的大小，通常为20到100个，至少有8个。如下图，本次共抓取了11个（正常包有8个）。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129034513536.png" alt="image-20221129034513536"></p>
 </li>
 </ol>
-<h4 id="4-What-to-hand-in（Questions）"><a href="#4-What-to-hand-in（Questions）" class="headerlink" title="4 What to hand in（Questions）"></a>4 What to hand in（Questions）</h4><p><em>1. List 3 different protocols that appear in the protocol column in the unfiltered  packet-listing window in step 7 above.</em></p>
-<p>如下图，OICQ，TCP，UDP。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127204731876.png" alt="image-20221127204731876"></p>
-<p><em>2.  How long did it take from when the HTTP GET message was sent until the HTTP  OK reply was received? (By default, the value of the Time column in the packet-listing window is the amount of time, in seconds, since Wireshark tracing began.  To display the Time field in time-of-day format, select the Wireshark View pull  down menu, then select Time Display Format, then select Time-of-day.)</em></p>
-<p>如下图，约为0.241秒。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127205727136.png" alt="image-20221127205727136"></p>
-<p><em>3. What is the Internet address of the gaia.cs.umass.edu (also known as wwwnet.cs.umass.edu)? What is the Internet address of your computer?</em></p>
-<p>如图，<em>gaia.cs.umass.edu</em> 的地址为128.119.245.12，本机地址为172.25.192.244。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127205827144.png" alt="image-20221127205827144"></p>
-<p><em>4. Print the two HTTP messages (GET and OK) referred to in question 2 above. To do so, select Print from the Wireshark File command menu, and select the “Selected Packet Only” and “Print as displayed” radial buttons, and then click OK.</em></p>
-<p>如果，点击”确定“即可打印。</p>
-<p><img src="/2022/12/29/CNLab1-1/image-20221127210357704.png" alt="image-20221127210357704"></p>
+<h5 id="Step-2-Inspect-the-Trace"><a href="#Step-2-Inspect-the-Trace" class="headerlink" title="Step 2: Inspect the Trace"></a>Step 2: Inspect the Trace</h5><p>我们可以选中一个数据包来查看它的协议层。这里我们选择一个”Protocol“（协议）列为”HTTP“且”Info“（信息）列为”GET“开头的数据包，可以看到共四层协议，分别为以太网、IP(IPv4)、TCP和HTTP。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129034647595.png" alt="image-20221129034647595"></p>
+<p>注意，顺序是从协议栈的底部向上的。这是因为当数据包沿着堆栈向下传递时，底层协议的头信息被添加到来自上层协议的信息前面。也就是说，下层协议在“线上”数据包中首先出现。</p>
+<p>接下来找到对应从服务器到本机的响应的另一个”HTTP“数据包，这个包的Info字段中应该有“200 OK”，表示获取成功。与HTTP GET包对比，可以看到其有两个额外的部分，如下图所示。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129034803774.png" alt="image-20221129034803774"></p>
+<p>第一个额外的部分写着“[2 Reassembled TCP Segments (2497 bytes): #6(1452), #7(1045)]”，它是关于如何将从服务器发往本机的数据包按顺序组合起来的（因为web响应是通过发送一系列数据包到计算机来实现的，标记为HTTP的数据包是web响应的最后一个数据包）。虽然这些数据包携带着部分HTTP相应，但当前他们每一个都显示有”TCP“。只有最后的包显示为具有HTTP协议时，它们才被组合成一个完整的 HTTP 响应。</p>
+<p>第二个额外的部分写着”Line-based text data: text&#x2F;html (2 lines)“，它描述的是所获取的网页的内容。这不是一个真正的协议，它是Wireshark正在生成的包内容的描述，以帮助我们理解网络流量。</p>
+<h5 id="Step-3-Packet-Structure"><a href="#Step-3-Packet-Structure" class="headerlink" title="Step 3: Packet Structure"></a>Step 3: Packet Structure</h5><p><em>To show your understanding of packet structure, draw a figure of an HTTP GET packet that shows the  position and size in bytes of the TCP, IP and Ethernet protocol headers.</em></p>
+<table>
+<thead>
+<tr>
+<th>Ethernet</th>
+<th>IP</th>
+<th>TCP</th>
+<th>HTTP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>14B</td>
+<td>20B</td>
+<td>20B</td>
+<td>128B</td>
+</tr>
+<tr>
+<td>Ethernet Header</td>
+<td>Ethernet Payload</td>
+<td>~</td>
+<td>~</td>
+</tr>
+<tr>
+<td></td>
+<td>IP Header</td>
+<td>IP Payload</td>
+<td>~</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TCP Header</td>
+<td>TCP Payload</td>
+</tr>
+</tbody></table>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129041434626.png" alt="image-20221129041434626"></p>
+<h5 id="Step-4-Protocol-Overhead"><a href="#Step-4-Protocol-Overhead" class="headerlink" title="Step 4: Protocol Overhead"></a>Step 4: Protocol Overhead</h5><p><em>Estimate the download protocol overhead, or percentage of the download bytes taken up by protocol  overhead. To do this, consider HTTP data (headers and message) to be useful data for the network to  carry, and lower layer headers (TCP, IP, and Ethernet) to be the overhead.</em></p>
+<p>可以通过对Destination列进行排序来只查看下载方向的数据包。数据包应该以一个描述为[SYN ACK]的短TCP包开始，这是连接的开始。接下来，是较大的TCP包（大约1到1.5KB）。最后一个是HTTP包（也可能以一个短的TCP包结束，它是结束连接的一部分）。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129035044873.png" alt="image-20221129035044873"></p>
+<p>对于每个包，我们可以检查它以Ethernet&#x2F;IP&#x2F;TCP报头的形式有多少开销，以及它在TCP有效负载中携带了多少有用的HTTP数据。</p>
+<p>我们依次选中数据包，可以看到下载过程数据总长度为：66 + 56 + 1506 + 1099 &#x3D; 2727 bytes，HTTP数据长度为：1045 bytes，所以下载开销占比为：(2727-1045)&#x2F;2727≈61.7％。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129040200799.png" alt="image-20221129040200799"></p>
+<p>下载协议开销很重要，它保证了数据传输的正确性和可恢复性。因为这里我们的GET请求数据包较短，所以下载协议开销较大。额外的开销部分虽然不是定长，但是基本是在一个较为确定的范围内，只要GET请求的内容包括更多的信息，只要数据包足够大，额外开销的占比就会趋近于0。</p>
+<h5 id="Step-5-Demultiplexing-Keys"><a href="#Step-5-Demultiplexing-Keys" class="headerlink" title="Step 5: Demultiplexing Keys"></a>Step 5: Demultiplexing Keys</h5><p>解复用（Demultiplexing）：当数据包从交给上层进行处理时，需要找到正确的上层协议，这个过程就叫做解复用。</p>
+<p>解复用键（Demultiplexing Keys）：在协议头中来指明上层协议的信息。</p>
+<p><em>1. Which Ethernet header field is the demultiplexing key that tells it the next higher layer is IP?  What value is used in this field to indicate “IP”?</em></p>
+<p>如图：Type；0x0800。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129041859851.png" alt="image-20221129041859851"></p>
+<p><em>2. Which IP header field is the demultiplexing key that tells it the next higher layer is TCP? What  value is used in this field to indicate “TCP”?</em></p>
+<p>如图：Protocol；0x06。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129041934849.png" alt="image-20221129041934849"></p>
+<h4 id="4-Explore-on-your-own"><a href="#4-Explore-on-your-own" class="headerlink" title="4 Explore on your own"></a>4 Explore on your own</h4><p> <em>Look at a short TCP packet that carries no higher-layer data. To what entity is this packet destined? After all, if it carries no higher-layer data then it does not seem very useful to a higher layer protocol such as HTTP!</em></p>
+<p>下图就是一个不包含更高层数据的TCP数据包。</p>
+<p><img src="/2022/12/29/CNLab1-2/image-20221129042407851.png" alt="image-20221129042407851"></p>
+<p>在TCP协议中，建立连接需要三次握手，结束连接需要4次挥手。这几次的数据传递均是不包括高层协议数据的，目的是为了确保连接建立的稳定和准确。</p>
+<p><em>In a classic layered model, one message from a higher layer has a header appended by the lower  layer and becomes one new message. But this is not always the case. Above, we saw a trace in  which the web response (one HTTP message comprised of an HTTP header and an HTTP payload) was converted into multiple lower layer messages (being multiple TCP packets). Imagine  that you have drawn the packet structure (as in step 2) for the first and last TCP packet carrying  the web response. How will the drawings differ?</em> </p>
+<p>第一个包的首部中，Connection字段的值为：keep-alive，表明后续仍有数据。最后一个包请求头中Connection字段的值为：close，表明传输结束，同时最后一个包中还会包含FIN&#x3D;1来请求关闭连接。</p>
+<p><em>In the classic layered model described above, lower layers append headers to the messages  passed down from higher layers. How will this model change if a lower layer adds encryption?</em> </p>
+<p>加密的目的是为了保密内容，所以加密的类型和加密密钥不能随着加密数据一同发送，而是应该在传输数据前根据加密协议进行协商确定。</p>
+<p><em>In the classic layered model described above, lower layers append headers to the messages  passed down from higher layers. How will this model change if a lower layer adds compression?</em></p>
+<p>压缩的目的是为了节省传输流量，所以压缩的协议可直接在下层协议头中指明，便于接收方解压缩。</p>
 
                 
             </div>
@@ -510,7 +547,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://ztrura.com/2022/12/29/CNLab1-1/">http://ztrura.com/2022/12/29/CNLab1-1/</a>
+                    <a href="http://ztrura.com/2022/12/29/CNLab1-2/">http://ztrura.com/2022/12/29/CNLab1-2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -632,9 +669,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/12/29/CNLab1-2/">
                     <div class="card-image">
@@ -652,9 +690,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -667,6 +705,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -689,19 +728,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/12/29/testblog/">
+                <a href="/2022/12/29/CNLab1-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="第一篇博客">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="lab1-1 Wireshark_Intro_v7.0">
                         
-                        <span class="card-title">第一篇博客</span>
+                        <span class="card-title">lab1-1 Wireshark_Intro_v7.0</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这是一篇测试博客，这里是摘要测试。
+                            计算机网络抓包实验1-1。
                         
                     </div>
                     <div class="publish-info">
@@ -712,8 +751,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/test/" class="post-category">
-                                    test
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C/" class="post-category">
+                                    计算机网络实验
                                 </a>
                             
                             
@@ -723,8 +762,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/testtag/">
-                        <span class="chip bg-color">testtag</span>
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                    <a href="/tags/Wireshark/">
+                        <span class="chip bg-color">Wireshark</span>
                     </a>
                     
                 </div>
