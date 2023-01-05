@@ -406,7 +406,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    887
+                    888
                 </div>
                 
 
@@ -433,15 +433,15 @@
             <div id="articleContent">
                 <h2 id="Lab1-1-Getting-Started"><a href="#Lab1-1-Getting-Started" class="headerlink" title="Lab1-1 Getting Started"></a>Lab1-1 Getting Started</h2><h4 id="1-Getting-Wireshark"><a href="#1-Getting-Wireshark" class="headerlink" title="1 Getting Wireshark"></a>1 Getting Wireshark</h4><p>从 <a target="_blank" rel="noopener" href="http://www.wireshark.org/download.html">http://www.wireshark.org/download.html</a> 下载并安装Wireshark。</p>
 <h4 id="2-Running-Wireshark"><a href="#2-Running-Wireshark" class="headerlink" title="2 Running Wireshark"></a>2 Running Wireshark</h4><p>Wireshark初始界面：</p>
-<p><img src="image-20221127193758653.png" alt="image-20221127193758653"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127193758653.png" alt="image-20221127193758653"></p>
 <p>双击接口名称即可进入对应接口进行抓包，如进入WLAN接口：</p>
-<p><img src="image-20221127194333009.png" alt="image-20221127194333009"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127194333009.png" alt="image-20221127194333009"></p>
 <p>抓包界面可大致分为以下五部分：</p>
-<p><img src="image-20221127200002502.png" alt="image-20221127200002502"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127200002502.png" alt="image-20221127200002502"></p>
 <ol>
 <li>命令菜单：常用的是”文件“和”捕获“菜单。“文件”菜单可以保存抓包数据，也可以打开以前的抓包数据文件，还有退出Wireshark应用程序等。“捕获”菜单可以允许我们开始或停止抓包。</li>
 <li>数据包列表窗口：显示每一个捕获包的一行摘要，包括包号、数据包被捕获的时间、数据包的源地址和目的地址、协议类型以及数据包中包含的特定于协议的信息。</li>
-<li>包头详细信息窗口：提供了包列表窗口中选中的包的详细信息。这些详细信息包括以太网帧(假设数据包通过以太网接口发送/接收)和包含该数据包的IP数据报的信息。</li>
+<li>包头详细信息窗口：提供了包列表窗口中选中的包的详细信息。这些详细信息包括以太网帧(假设数据包通过以太网接口发送&#x2F;接收)和包含该数据包的IP数据报的信息。</li>
 <li>数据包内容窗口：以ASCII和十六进制格式显示捕获帧的全部内容。</li>
 <li>包过滤显示区域：可以在其中输入协议名或其他信息，以便过滤包列表窗口(以及包头和包内容窗口)中显示的信息。</li>
 </ol>
@@ -452,38 +452,38 @@
 <li><p>打开Wireshark软件。</p>
 </li>
 <li><p>选择“捕获”下拉菜单并选择“选项”，打开”Wireshark·捕获选项“。</p>
-<p><img src="image-20221127202204806.png" alt="image-20221127202204806"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127202204806.png" alt="image-20221127202204806"></p>
 </li>
 <li><p>选中要开始抓包的接口，然后点击”开始“。</p>
 </li>
 <li><p>开始抓包之后，选择“抓包”下拉菜单并选择“停止”，可以停止抓包（但是现在先不要停止抓包）。</p>
 </li>
-<li><p>当Wireshark正在运行时，在浏览器中打开：<a target="_blank" rel="noopener" href="http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-filel.html。为了显示此页面，浏览器将在">http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-filel.html。为了显示此页面，浏览器将在</a> <em>gaia.cs.umass.edu</em> 与HTTP服务器联系，并与服务器交换HTTP消息以下载此页面。包含这些HTTP消息的以太网帧(以及通过以太网适配器的所有其他帧)将被Wireshark捕获。</p>
+<li><p>当Wireshark正在运行时，在浏览器中打开：<a target="_blank" rel="noopener" href="http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-filel.html%E3%80%82%E4%B8%BA%E4%BA%86%E6%98%BE%E7%A4%BA%E6%AD%A4%E9%A1%B5%E9%9D%A2%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B0%86%E5%9C%A8">http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-filel.html。为了显示此页面，浏览器将在</a> <em>gaia.cs.umass.edu</em> 与HTTP服务器联系，并与服务器交换HTTP消息以下载此页面。包含这些HTTP消息的以太网帧(以及通过以太网适配器的所有其他帧)将被Wireshark捕获。</p>
 </li>
 <li><p>在浏览器显示下面的页面后，点击停止按钮，现在可以在已捕获包列表中看到通过这个网络接口的所有的数据包。</p>
-<p><img src="image-20221127203421287.png" alt="image-20221127203421287"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127203421287.png" alt="image-20221127203421287"></p>
 </li>
 <li><p>在应用显示过滤器窗口中输入“http”，然后选择Apply(在输入“http”的右侧)。这将导致在包列表窗口中只显示HTTP消息。</p>
-<p><img src="image-20221127203915269.png" alt="image-20221127203915269"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127203915269.png" alt="image-20221127203915269"></p>
 </li>
 <li><p>查看HTTP GET信息。当选择HTTP GET消息时，将在报文报头窗口中显示以太网帧、IP数据报、TCP段和HTTP消息报头信息。</p>
-<p><img src="image-20221127204445952.png" alt="image-20221127204445952"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127204445952.png" alt="image-20221127204445952"></p>
 </li>
 <li><p>退出Wireshark。</p>
 </li>
 </ol>
 <h4 id="4-What-to-hand-in（Questions）"><a href="#4-What-to-hand-in（Questions）" class="headerlink" title="4 What to hand in（Questions）"></a>4 What to hand in（Questions）</h4><p><em>1. List 3 different protocols that appear in the protocol column in the unfiltered  packet-listing window in step 7 above.</em></p>
 <p>如下图，OICQ，TCP，UDP。</p>
-<p><img src="image-20221127204731876.png" alt="image-20221127204731876"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127204731876.png" alt="image-20221127204731876"></p>
 <p><em>2.  How long did it take from when the HTTP GET message was sent until the HTTP  OK reply was received? (By default, the value of the Time column in the packet-listing window is the amount of time, in seconds, since Wireshark tracing began.  To display the Time field in time-of-day format, select the Wireshark View pull  down menu, then select Time Display Format, then select Time-of-day.)</em></p>
 <p>如下图，约为0.241秒。</p>
-<p><img src="image-20221127205727136.png" alt="image-20221127205727136"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127205727136.png" alt="image-20221127205727136"></p>
 <p><em>3. What is the Internet address of the gaia.cs.umass.edu (also known as wwwnet.cs.umass.edu)? What is the Internet address of your computer?</em></p>
 <p>如图，<em>gaia.cs.umass.edu</em> 的地址为128.119.245.12，本机地址为172.25.192.244。</p>
-<p><img src="image-20221127205827144.png" alt="image-20221127205827144"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127205827144.png" alt="image-20221127205827144"></p>
 <p><em>4. Print the two HTTP messages (GET and OK) referred to in question 2 above. To do so, select Print from the Wireshark File command menu, and select the “Selected Packet Only” and “Print as displayed” radial buttons, and then click OK.</em></p>
 <p>如果，点击”确定“即可打印。</p>
-<p><img src="image-20221127210357704.png" alt="image-20221127210357704"></p>
+<p><img src="/2022/12/29/CNLab1-1/image-20221127210357704.png" alt="image-20221127210357704"></p>
 
                 
             </div>
