@@ -399,7 +399,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-12-29
+                    2023-01-10
                 </div>
                 
 
@@ -434,9 +434,9 @@
                 <h2 id="Lab6-1-TCP"><a href="#Lab6-1-TCP" class="headerlink" title="Lab6-1 TCP"></a>Lab6-1 TCP</h2><h4 id="1-Objective"><a href="#1-Objective" class="headerlink" title="1 Objective"></a>1 Objective</h4><p>查看TCP(传输控制协议)的详细信息。</p>
 <h4 id="2-Requirements"><a href="#2-Requirements" class="headerlink" title="2 Requirements"></a>2 Requirements</h4><p>本实验要求使用Wireshark软件、wget程序和任意的web浏览器。</p>
 <h4 id="3-Steps"><a href="#3-Steps" class="headerlink" title="3 Steps"></a>3 Steps</h4><h5 id="Step-1-Capture-a-Trace"><a href="#Step-1-Capture-a-Trace" class="headerlink" title="Step 1: Capture a Trace"></a>Step 1: Capture a Trace</h5><p>实验手册中提供了本实验的抓包结果，可以直接点击<a target="_blank" rel="noopener" href="https://kevincurran.org/com320/labs/wireshark/trace-tcp.pcap">链接</a>下载（学校官网的链接无法下载，在凯文教授主页找到了可以下载的链接）。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202194107359.png" alt="image-20221202194107359"></p>
+<p><img src="image-20221202194107359.png" alt="image-20221202194107359"></p>
 <h5 id="Step-2-Inspect-the-Trace"><a href="#Step-2-Inspect-the-Trace" class="headerlink" title="Step 2: Inspect the Trace"></a>Step 2: Inspect the Trace</h5><p>任选一个协议列为TCP的从服务端下载到本机的长数据包，查看其TCP协议层的详细信息。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202195842295.png" alt="image-20221202195842295"></p>
+<p><img src="image-20221202195842295.png" alt="image-20221202195842295"></p>
 <p>我们可以看到以下字段（我们只讨论通过网络传输的字段）：</p>
 <ul>
 <li>“Source Port”和”Destination Port”是TCP在IP地址之外添加的寻址。”Source Port”即源端口号很可能是80（这里也的确是80），这是因为数据包由web服务器发送，而标准的web服务器端口是80。</li>
@@ -448,7 +448,8 @@
 <li>“Options”字段提供了一系列选项。</li>
 <li>“TCP payload”字段存储了被传输的字节。</li>
 </ul>
-<h5 id="Step-3-TCP-Segment-Structure"><a href="#Step-3-TCP-Segment-Structure" class="headerlink" title="Step 3: TCP Segment Structure"></a>Step 3: TCP Segment Structure</h5><table>
+<h5 id="Step-3-TCP-Segment-Structure"><a href="#Step-3-TCP-Segment-Structure" class="headerlink" title="Step 3: TCP Segment Structure"></a>Step 3: TCP Segment Structure</h5><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>Source Port</th>
@@ -464,7 +465,8 @@
 <th>Payload</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>2 bytes</td>
 <td>2 bytes</td>
 <td>4 bytes</td>
@@ -490,9 +492,11 @@
 <td>~</td>
 <td>TCP payload</td>
 </tr>
-</tbody></table>
-<h5 id="Step-4-TCP-Connection-Setup-x2F-Teardown"><a href="#Step-4-TCP-Connection-Setup-x2F-Teardown" class="headerlink" title="Step 4: TCP Connection Setup&#x2F;Teardown"></a>Step 4: TCP Connection Setup&#x2F;Teardown</h5><p>要查看“三次握手”的运行情况，请查找带有SYN标志的TCP段以及它后面的包，也可以使用过滤器表达式“tcp.flags.syn&#x3D;&#x3D;1”来搜索带有SYN标志的数据包。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202201920364.png" alt="image-20221202201920364"></p>
+</tbody>
+</table>
+</div>
+<h5 id="Step-4-TCP-Connection-Setup-Teardown"><a href="#Step-4-TCP-Connection-Setup-Teardown" class="headerlink" title="Step 4: TCP Connection Setup/Teardown"></a>Step 4: TCP Connection Setup/Teardown</h5><p>要查看“三次握手”的运行情况，请查找带有SYN标志的TCP段以及它后面的包，也可以使用过滤器表达式“tcp.flags.syn==1”来搜索带有SYN标志的数据包。</p>
+<p><img src="image-20221202201920364.png" alt="image-20221202201920364"></p>
 <p>“SYN”包是三次握手的开始。在它被从本机发送到远程服务器后，远程服务器应该返回一个“SYN,ACK”包。在接收到这个包后，本地计算机将对其进行确认并开始发送数据。</p>
 <p><em>Draw a time sequence diagram of the three-way handshake in your trace, up to and including the first  data packet (the HTTP GET request) sent by your computer when the connection is established Put your  computer on the left side and the remote server on the right side. As usual, time runs down the page,  and lines across the page indicate segments.</em> </p>
 <p><em>Include the following features on your diagram:</em> </p>
@@ -501,29 +505,29 @@
 <li><em>The time in milliseconds, starting at zero, each segment was sent or received at your computer.</em> </li>
 <li><em>The round-trip time to the server estimated as the difference between the SYN and SYN-ACK  segments.</em></li>
 </ul>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202202219889.png" alt="image-20221202202219889"></p>
+<p><img src="image-20221202202219889.png" alt="image-20221202202219889"></p>
 <p>“SYN”包和”SYN,ACK”包及后续包（直至并包括连接建立时计算机发送的第一个数据包(HTTP GET请求)）如上图，参考上图可以画出三次握手的时间序列图。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202205820368.png" alt="image-20221202205820368"></p>
+<p><img src="image-20221202205820368.png" alt="image-20221202205820368"></p>
 <h5 id="Step-5-Connection-Options"><a href="#Step-5-Connection-Options" class="headerlink" title="Step 5: Connection Options"></a>Step 5: Connection Options</h5><p>除了建立连接之外，TCP “SYN”包还使用选项在两端之间协商参数。每一端通过在其SYN上包含适当的选项向另一端描述其能力(如果有的话)，通常两端都必须支持在数据传输过程中用到的行为。</p>
 <p><em>What TCP Options are carried on the SYN packets for your trace?</em></p>
 <p>如下图。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202204643312.png" alt="image-20221202204643312"></p>
-<h5 id="Step-6-FIN-x2F-RST-Teardown"><a href="#Step-6-FIN-x2F-RST-Teardown" class="headerlink" title="Step 6: FIN&#x2F;RST Teardown"></a>Step 6: FIN&#x2F;RST Teardown</h5><p>最后，TCP连接在下载完成后关闭，这通常通过FIN (Finalize)段来完成。每一方发送一个FIN给另一方，并确认他们收到的FIN，这有点类似于三次握手。或者，当一端发送RST (Reset)时，连接可能突然断开，这个数据包不需要被对方确认。</p>
+<p><img src="image-20221202204643312.png" alt="image-20221202204643312"></p>
+<h5 id="Step-6-FIN-RST-Teardown"><a href="#Step-6-FIN-RST-Teardown" class="headerlink" title="Step 6: FIN/RST Teardown"></a>Step 6: FIN/RST Teardown</h5><p>最后，TCP连接在下载完成后关闭，这通常通过FIN (Finalize)段来完成。每一方发送一个FIN给另一方，并确认他们收到的FIN，这有点类似于三次握手。或者，当一端发送RST (Reset)时，连接可能突然断开，这个数据包不需要被对方确认。</p>
 <p><em>Draw a picture of the teardown in your trace, starting from when the first FIN or RST is issued until the  connection is complete. As before, show the sequence and ACK numbers on each segment. If you have  FINs then use the time difference to estimate the round-trip time.</em></p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202205315973.png" alt="image-20221202205315973"></p>
+<p><img src="image-20221202205315973.png" alt="image-20221202205315973"></p>
 <p>参考上图，可以画出时间序列图。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202210117925.png" alt="image-20221202210117925"></p>
-<h5 id="Step-7-TCP-Data-Transfer"><a href="#Step-7-TCP-Data-Transfer" class="headerlink" title="Step 7: TCP Data Transfer"></a>Step 7: TCP Data Transfer</h5><p>在”统计“栏中选择”I&#x2F;O图表“，然后点击左下角”+”添加新图形，并修改”Display Filter”值分别为”tcp.srcport&#x3D;&#x3D;80”和”tcp.dstport=&#x3D;80”，得到下面的图表。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202212100606.png" alt="image-20221202212100606"></p>
-<p><em>1. What is the rough data rate in the download direction in packets&#x2F;second and bits&#x2F;second once  the TCP connection is running well?</em></p>
-<p>以包&#x2F;秒的单位的速率可以参考上图，可以看出速率约为225 包&#x2F;秒；以位&#x2F;秒的单位的速率可以参考下图，可以看出速率约为$2.5×10^6$ 位&#x2F;秒。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202213527791.png" alt="image-20221202213527791"></p>
+<p><img src="image-20221202210117925.png" alt="image-20221202210117925"></p>
+<h5 id="Step-7-TCP-Data-Transfer"><a href="#Step-7-TCP-Data-Transfer" class="headerlink" title="Step 7: TCP Data Transfer"></a>Step 7: TCP Data Transfer</h5><p>在”统计“栏中选择”I/O图表“，然后点击左下角”+”添加新图形，并修改”Display Filter”值分别为”tcp.srcport==80”和”tcp.dstport\==80”，得到下面的图表。</p>
+<p><img src="image-20221202212100606.png" alt="image-20221202212100606"></p>
+<p><em>1. What is the rough data rate in the download direction in packets/second and bits/second once  the TCP connection is running well?</em></p>
+<p>以包/秒的单位的速率可以参考上图，可以看出速率约为225 包/秒；以位/秒的单位的速率可以参考下图，可以看出速率约为$2.5×10^6$ 位/秒。</p>
+<p><img src="image-20221202213527791.png" alt="image-20221202213527791"></p>
 <p><em>2. What percentage of this download rate is content? Show your calculation. To find out, look at a  typical download packet; there should be many similar, large download packets. You can see  how long it is, and how many bytes of TCP payload it contains.</em></p>
-<p>由下图可知，下载总量为1434 bytes，其中有效负载总量为1368 bytes，比例约为95.40%（1368&#x2F;1434≈0.95397）。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202213924589.png" alt="image-20221202213924589"></p>
-<p><em>3. What is the rough data rate in the upload direction in packets&#x2F;second and bits&#x2F;second due to the  ACK packets?</em></p>
-<p>以包&#x2F;秒为单位的数据可以从第一张I&#x2F;O图中读到，可以看到约为110 包&#x2F;秒；以位&#x2F;秒为单位的数据可以从下图中读到，可以看到约为42000 位&#x2F;秒。</p>
-<p><img src="/2022/12/29/CNLab6-1/image-20221202214215309.png" alt="image-20221202214215309"></p>
+<p>由下图可知，下载总量为1434 bytes，其中有效负载总量为1368 bytes，比例约为95.40%（1368/1434≈0.95397）。</p>
+<p><img src="image-20221202213924589.png" alt="image-20221202213924589"></p>
+<p><em>3. What is the rough data rate in the upload direction in packets/second and bits/second due to the  ACK packets?</em></p>
+<p>以包/秒为单位的数据可以从第一张I/O图中读到，可以看到约为110 包/秒；以位/秒为单位的数据可以从下图中读到，可以看到约为42000 位/秒。</p>
+<p><img src="image-20221202214215309.png" alt="image-20221202214215309"></p>
 <p><em>4. If the most recently received TCP segment from the server has a sequence number of X, then  what ACK number does the next transmitted TCP segment carry?</em></p>
 <p>X加上数据段中的TCP有效负载字节数。</p>
 
