@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>push-up</title>
-      <link href="/2023/01/25/push-up/"/>
-      <url>/2023/01/25/push-up/</url>
+      <title>博客恢复更新</title>
+      <link href="/2023/02/22/restart/"/>
+      <url>/2023/02/22/restart/</url>
       
-        <content type="html"><![CDATA[<p>今天看到一个 up 坚持打卡1000天俯卧撑的视频（<a href="https://www.bilibili.com/video/BV1MR4y1Y7qh/?share_source=copy_web&vd_source=9221c5a37610ea12cb4c42c44b2006c6">用1000天俯卧撑告诉你 态度决定高度</a>），属实被震撼到了。</p><p>虽然我初四到高三也是坚持过三年多健身的，但上大学后就没怎么锻炼过了，肌肉线条也都快看不出来了。今天在这里立个 flag，从今天开始打卡做俯卧撑，重新把肌肉练回来，同时也磨练意志力。</p><p>冲！</p>]]></content>
+        <content type="html"><![CDATA[<p>大年初五那天发现提交博客时 git 出问题，当时调了一会儿没调好就没再弄（因为那会儿正好要去看电影），然后就是准备开学考试，也就一直没来得及修。</p><p>上周考试一直考到周日，考完以后好好休息了两天，今天才抽时间弄了下。颇是费了一番功夫，不过也好歹是把问题给解决了（就只是 ssh 密钥的问题，竟然找这么久，离谱），博客成功恢复更新！</p><p>太晚了先睡觉了，明天起床把这段时间没上传的都补一下（</p>]]></content>
       
       
       <categories>
@@ -20,7 +20,7 @@
       
         <tags>
             
-            <tag> 健身 </tag>
+            <tag> 杂谈 </tag>
             
         </tags>
       
