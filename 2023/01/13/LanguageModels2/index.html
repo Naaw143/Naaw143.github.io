@@ -16,12 +16,12 @@
   <meta name="author" content="ztrura">
   <meta name="keywords" content="">
   
-    <meta name="description" content="BERT vs GPT网络结构  Masked Multi-Head-Attention。使用mask的原因是因为在预测句子的时候，当前时刻是无法获取到未来时刻的信息的。也就是Multi-Head-Attention可以看到Input的整个句子，而Masked Multi-Head-Attention只能看到当前输入之前的内容，无法看到之后的内容。 预训练任务。BERT：填空；GPT：预测接下来会">
+    <meta name="description" content="对上次语言模型综述的补充。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Language Models 补充">
 <meta property="og:url" content="http://ztrura.com/2023/01/13/LanguageModels2/index.html">
 <meta property="og:site_name" content="Ztrura">
-<meta property="og:description" content="BERT vs GPT网络结构  Masked Multi-Head-Attention。使用mask的原因是因为在预测句子的时候，当前时刻是无法获取到未来时刻的信息的。也就是Multi-Head-Attention可以看到Input的整个句子，而Masked Multi-Head-Attention只能看到当前输入之前的内容，无法看到之后的内容。 预训练任务。BERT：填空；GPT：预测接下来会">
+<meta property="og:description" content="对上次语言模型综述的补充。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ztrura.com/2023/01/13/LanguageModels2/image-20230113194643214.png">
 <meta property="og:image" content="http://ztrura.com/2023/01/13/LanguageModels2/image-20230113163442494.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://ztrura.com/2023/01/13/LanguageModels2/image-20230113202347695.png">
 <meta property="og:image" content="http://ztrura.com/2023/01/13/LanguageModels2/image-20230113202621869.png">
 <meta property="article:published_time" content="2023-01-13T15:19:08.000Z">
-<meta property="article:modified_time" content="2023-01-13T15:28:42.652Z">
+<meta property="article:modified_time" content="2023-02-22T11:10:46.415Z">
 <meta property="article:author" content="Ztrura">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="大模型学习笔记">
@@ -253,14 +253,6 @@
 
     
     
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
-        </span>
-        
-      
-    
   </div>
 
 
@@ -363,14 +355,6 @@
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Language Models 补充</h1>
-            
-              <p class="note note-info">
-                
-                  
-                    本文最后更新于：2023年1月13日 晚上
-                  
-                
-              </p>
             
             
               <div class="markdown-body">
