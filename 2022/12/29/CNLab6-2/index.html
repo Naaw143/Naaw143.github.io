@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"ztrura.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/search.xml"};
+    var CONFIG = {"hostname":"ztrura.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -282,16 +282,17 @@
                 
                 <h2 id="Lab6-2-UDP"><a href="#Lab6-2-UDP" class="headerlink" title="Lab6-2 UDP"></a>Lab6-2 UDP</h2><h4 id="1-Objective"><a href="#1-Objective" class="headerlink" title="1 Objective"></a>1 Objective</h4><p>查看UDP(用户数据报协议)的详细信息。UDP是在Internet上使用的一种传输协议，在不需要可靠性时作为TCP的替代方案。</p>
 <h4 id="2-Steps"><a href="#2-Steps" class="headerlink" title="2 Steps"></a>2 Steps</h4><h5 id="Step-1-Capture-a-Trace"><a href="#Step-1-Capture-a-Trace" class="headerlink" title="Step 1: Capture a Trace"></a>Step 1: Capture a Trace</h5><p>跟上个实验一样，实验手册中提供了本实验的抓包结果，可以直接点击<a target="_blank" rel="noopener" href="https://kevincurran.org/com320/labs/wireshark/trace-udp.pcap">链接</a>下载。</p>
-<p><img src="/2022/12/29/CNLab6-2/image-20221202220817270.png" srcset="/img/loading.gif" lazyload alt="image-20221202220817270"></p>
+<p><img src="image-20221202220817270.png" srcset="/img/loading.gif" lazyload alt="image-20221202220817270"></p>
 <h5 id="Step-2-Inspect-the-Trace"><a href="#Step-2-Inspect-the-Trace" class="headerlink" title="Step 2: Inspect the Trace"></a>Step 2: Inspect the Trace</h5><p>任选一个协议列为DNS的从服务端下载到本机的长数据包，查看其UDP协议层的详细信息。</p>
-<p><img src="/2022/12/29/CNLab6-2/image-20221202220919216.png" srcset="/img/loading.gif" lazyload alt="image-20221202220919216"></p>
+<p><img src="image-20221202220919216.png" srcset="/img/loading.gif" lazyload alt="image-20221202220919216"></p>
 <p>我们可以看到以下字段（我们只讨论通过网络传输的字段）：</p>
 <ul>
 <li>“Source Port”和”Destination Port”分别是UDP消息发送的端口号和UDP消息目的地的端口号。端口是UDP中唯一的寻址形式。</li>
 <li>“Length”给出了UDP消息的长度。</li>
 <li>“Checksum”是用于验证消息内容的消息校验和。</li>
 </ul>
-<h5 id="Step-3-UDP-Message-Structure"><a href="#Step-3-UDP-Message-Structure" class="headerlink" title="Step 3: UDP Message Structure"></a>Step 3: UDP Message Structure</h5><table>
+<h5 id="Step-3-UDP-Message-Structure"><a href="#Step-3-UDP-Message-Structure" class="headerlink" title="Step 3: UDP Message Structure"></a>Step 3: UDP Message Structure</h5><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>IP header</th>
@@ -302,7 +303,8 @@
 <th>UDP payload</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td></td>
 <td>2 bytes</td>
 <td>2 bytes</td>
@@ -316,9 +318,10 @@
 <td>~</td>
 <td>~</td>
 <td>~</td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>1. What does the Length field include? The UDP payload, UDP payload and UDP header, or UDP  payload, UDP header, and lower layer headers?</em></p>
 <p>Length字段给出了UDP有效负载字节加上UDP报头的长度。</p>
 <p><em>2. How long in bits is the UDP checksum?</em> </p>
@@ -329,11 +332,11 @@
 <p>我们可以考虑几个问题，第一个问题是IP如何知道下一个更高的协议层是UDP，答案是在IP报头中有一个Protocol字段，它包含这个信息。</p>
 <p><em>Q: Give the value of the IP Protocol field that identifies the upper layer protocol as UDP.</em></p>
 <p><em>A：如下图，“IP Protocol”字段值为17表示UDP。</em></p>
-<p><img src="/2022/12/29/CNLab6-2/image-20221202223719259.png" srcset="/img/loading.gif" lazyload alt="image-20221202223719259"></p>
+<p><img src="image-20221202223719259.png" srcset="/img/loading.gif" lazyload alt="image-20221202223719259"></p>
 <p>第二个问题是UDP消息通常如何在IP层寻址。我们可以发现一个神奇的事情，就是UDP消息既不来自于本地计算机，也不是只发送到本地计算机，我们可以通过对Source和Destination列进行排序来查看这一点。这种情况的原因是UDP被广泛用作系统协议的一部分，这些协议经常使用广播和多播地址向所有对它们感兴趣的本地计算机发送消息。</p>
 <p><em>Q: Examine the UDP messages and give the destination IP addresses that are used when your computer is neither the source IP address nor the destination IP address. (If you have only your computer as the source or destination IP address then you may use the supplied trace.)</em></p>
 <p><em>A：如下图，此时目标IP地址为239.255.255.250。</em></p>
-<p><img src="/2022/12/29/CNLab6-2/image-20221202224327032.png" srcset="/img/loading.gif" lazyload alt="image-20221202224327032"></p>
+<p><img src="image-20221202224327032.png" srcset="/img/loading.gif" lazyload alt="image-20221202224327032"></p>
 <p><em>Q: What is the typical size of UDP messages in your trace?</em></p>
 <p><em>我们依次查看各个数据包的UDP信息长度可以发现，这个答案会随着追踪变化。它们通常在100~200个字节之间。</em></p>
 
