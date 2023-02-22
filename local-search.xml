@@ -536,7 +536,7 @@
     <link href="/2022/12/29/testblog/"/>
     <url>/2022/12/29/testblog/</url>
     
-    <content type="html"><![CDATA[<h4 id="似乎有点晚"><a href="#似乎有点晚" class="headerlink" title="似乎有点晚"></a>似乎有点晚</h4><p>建立一个博客来记录学习生活及平时的心理历程等。</p><p>这里是公式测试</p><p>$a^b$</p><p>这里是图片测试</p><p><img src="/2022/12/29/testblog/f0.jpg" alt="测试图片"></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="似乎有点晚"><a href="#似乎有点晚" class="headerlink" title="似乎有点晚"></a>似乎有点晚</h4><p>建立一个博客来记录学习生活及平时的心理历程等。</p><p>这里是公式测试</p><p>$a^b$<br>$$<br>x_i^y<br>$$<br>这里是图片测试</p><p><img src="/2022/12/29/testblog/f0.jpg" alt="测试图片"></p><p>这里是代码测试</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello world&quot;</span>)<br></code></pre></td></tr></table></figure><p>这里是表格测试</p><table><thead><tr><th align="center">A</th><th align="center">B</th></tr></thead><tbody><tr><td align="center">0</td><td align="center">1</td></tr></tbody></table>]]></content>
     
     
     <categories>
