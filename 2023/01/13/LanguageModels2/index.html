@@ -359,7 +359,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="BERT-vs-GPT"><a href="#BERT-vs-GPT" class="headerlink" title="BERT vs GPT"></a>BERT vs GPT</h2><h4 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h4><p><img src="/2023/01/13/LanguageModels2/image-20230113194643214.png" srcset="/img/loading.gif" lazyload alt="Encoder→BERT,Decoder→GPT"></p>
+                <h2 id="BERT-vs-GPT"><a href="#BERT-vs-GPT" class="headerlink" title="BERT vs GPT"></a>BERT vs GPT</h2><h4 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h4><p><img src="image-20230113194643214.png" srcset="/img/loading.gif" lazyload alt="Encoder→BERT,Decoder→GPT"></p>
 <ul>
 <li>Masked Multi-Head-Attention。使用mask的原因是因为在预测句子的时候，当前时刻是无法获取到未来时刻的信息的。也就是Multi-Head-Attention可以看到Input的整个句子，而Masked Multi-Head-Attention只能看到当前输入之前的内容，无法看到之后的内容。</li>
 <li>预训练任务。BERT：填空；GPT：预测接下来会出现的token是什么。</li>
@@ -367,7 +367,7 @@
 </ul>
 <h2 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h2><p>Text-to-Text Transfer Transformer</p>
 <p>文本到文本传输转换器</p>
-<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p><img src="/2023/01/13/LanguageModels2/image-20230113163442494.png" srcset="/img/loading.gif" lazyload alt="T5"></p>
+<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p><img src="image-20230113163442494.png" srcset="/img/loading.gif" lazyload alt="T5"></p>
 <p>将翻译、分类、回归、摘要生成等任务都统一转成Text-to-Text任务，从而使得这些任务在训练(pre-train和fine-tune)时能够使用相同的目标函数，在测试时也能使用相同的解码过程。</p>
 <p>在形式上统一了自然语言理解和自然语言生成任务的外在表现形式。</p>
 <p>在下游任务上fine-tune模型时，为了告诉模型当前要做何种任务，我们会给每条输入样本加一个与具体任务相关的前缀。</p>
@@ -379,26 +379,26 @@
 <p>T5 的baseline模型直接采用标准的Transformer encoder-decoder结构，以便在生成任务和分类任务上都能取得不错的效果。</p>
 <h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>无监督 &amp; 有监督。</p>
 <p>denoising objective：</p>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113164643567.png" srcset="/img/loading.gif" lazyload alt="很像MLM"></p>
+<p><img src="image-20230113164643567.png" srcset="/img/loading.gif" lazyload alt="很像MLM"></p>
 <h4 id="新的尝试"><a href="#新的尝试" class="headerlink" title="新的尝试"></a>新的尝试</h4><h5 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h5><ul>
 <li>fully-visible attention mask：输出序列的每个元素可以看见输入序列的每个元素。</li>
 <li>causal attention mask：输出序列的每个元素只能看对应位置及之前的输入序列的元素，无法看见未来的元素。</li>
 <li>causal with prefix attention mask：输入序列的一部分前缀采用fully-visible attention mask，其余部分采用 causal attention mask。</li>
 </ul>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113170256170.png" srcset="/img/loading.gif" lazyload alt="新的模型架构"></p>
+<p><img src="image-20230113170256170.png" srcset="/img/loading.gif" lazyload alt="新的模型架构"></p>
 <p>在最左侧的Encoder-Decoder结构中，Encoder部分采用fully-visible attention mask，而Decoder部分采用causal attention mask。</p>
 <p>中间的Language model结构中，采用causal attention mask。</p>
 <p>最右侧的Prefix LM结构中，采用causal with prefix attention mask。比如在翻译任务中，给定训练样本translate English to German: That is good. target: Das ist gut.，我们对translate English to German: That is good. target:采用fully-visible attention mask，对Das ist gut.采用causal attention mask。</p>
 <p>结果：</p>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113193754376.png" srcset="/img/loading.gif" lazyload alt="结果"></p>
+<p><img src="image-20230113193754376.png" srcset="/img/loading.gif" lazyload alt="结果"></p>
 <h5 id="随机Mask的比例"><a href="#随机Mask的比例" class="headerlink" title="随机Mask的比例"></a>随机Mask的比例</h5><p>15% or ？</p>
-<h5 id="总表"><a href="#总表" class="headerlink" title="总表"></a>总表</h5><p><img src="/2023/01/13/LanguageModels2/image-20230113121615609.png" srcset="/img/loading.gif" lazyload alt="做了很全面的工作"></p>
+<h5 id="总表"><a href="#总表" class="headerlink" title="总表"></a>总表</h5><p><img src="image-20230113121615609.png" srcset="/img/loading.gif" lazyload alt="做了很全面的工作"></p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>预训练策略：采用multi-task预训练方式(即无监督任务和有监督任务一起预训练)，在对比迁移方法一小节中我们发现Multi-task pretraining + fine-tuning的效果和Unsupervised pre-training + fine-tuning的效果差不多，但是前者在预训练过程还能够监控下游任务的性能，因此作者最后采用Multi-task pre-training。</p>
 <p>作者也说了，本文的目的不是提出一个新的方法，而是对NLP领域的一些技术支撑点提供一个较为全面的分析视角。</p>
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p><a target="_blank" rel="noopener" href="https://github.com/google-research/text-to-text-transfer-transformer">https://github.com/google-research/text-to-text-transfer-transformer</a></p>
 <h2 id="mT5"><a href="#mT5" class="headerlink" title="mT5"></a>mT5</h2><p>mT5 → Multilingual T5 → 支持中文</p>
 <h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p><a target="_blank" rel="noopener" href="https://github.com/google-research/multilingual-t5">https://github.com/google-research/multilingual-t5</a></p>
-<h2 id="chatGPT"><a href="#chatGPT" class="headerlink" title="chatGPT"></a>chatGPT</h2><p><img src="/2023/01/13/LanguageModels2/image-20230113203948996.png" srcset="/img/loading.gif" lazyload alt="提到说使用了RLHF方法"></p>
+<h2 id="chatGPT"><a href="#chatGPT" class="headerlink" title="chatGPT"></a>chatGPT</h2><p><img src="image-20230113203948996.png" srcset="/img/loading.gif" lazyload alt="提到说使用了RLHF方法"></p>
 <h4 id="RLHF"><a href="#RLHF" class="headerlink" title="RLHF"></a>RLHF</h4><p>Reinforcement Learning from Human Feedback</p>
 <p>基于人类反馈的强化学习。</p>
 <p>RLHF的训练过程可以分解为三个核心步骤：</p>
@@ -408,14 +408,14 @@
 <li>通过强化学习微调 LM</li>
 </ul>
 <p>一个问题是训练这样的模型需要多少数据和人力标注？Hug给出的回答是，因为人工写回答要求质量高所以不能用众包。不过对RM模型的训练，需要的标注不多。</p>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113202215940.png" srcset="/img/loading.gif" lazyload alt="三大核心步骤"></p>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113202337463.png" srcset="/img/loading.gif" lazyload alt="预训练语言模型"></p>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113202347695.png" srcset="/img/loading.gif" lazyload alt="收集结果→打分（排名）→训练奖励模型"></p>
+<p><img src="image-20230113202215940.png" srcset="/img/loading.gif" lazyload alt="三大核心步骤"></p>
+<p><img src="image-20230113202337463.png" srcset="/img/loading.gif" lazyload alt="预训练语言模型"></p>
+<p><img src="image-20230113202347695.png" srcset="/img/loading.gif" lazyload alt="收集结果→打分（排名）→训练奖励模型"></p>
 <ol>
 <li>为什么不人工直接打分？因为打分是主观的需要归一化，而排序一般大家会有共同的结论：对同一个问题，A和B哪个回答更好。</li>
 <li>有了一组一组的偏序（A&gt;B, A&gt;C, C&gt;B）怎么得到每个回答的奖励分数？使用了Elo排名系统，来转换得到分数。</li>
 </ol>
-<p><img src="/2023/01/13/LanguageModels2/image-20230113202621869.png" srcset="/img/loading.gif" lazyload alt="使用奖励模型微调语言模型"></p>
+<p><img src="image-20230113202621869.png" srcset="/img/loading.gif" lazyload alt="使用奖励模型微调语言模型"></p>
 
                 
               </div>
@@ -628,7 +628,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <!--<i class="iconfont icon-love"></i>--> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <!--<i class="iconfont icon-love"></i>--> <a>&</a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
   
