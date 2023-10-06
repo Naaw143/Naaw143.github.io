@@ -385,7 +385,7 @@
                 <h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h4 id="Epoch"><a href="#Epoch" class="headerlink" title="Epoch"></a>Epoch</h4><p>当一个完整的数据集通过了神经网络一次并且返回了一次，这个过程称为一次epoch。（也就是说，所有训练样本在神经网络中都进行了一次正向传播和一次反向传播 ）</p>
 <p>再通俗一点，一个Epoch就是将所有训练样本训练一次的过程。</p>
 <p>然而，当一个Epoch的样本（也就是所有的训练样本）数量可能太过庞大（对于计算机而言），就需要把它分成多个小块，也就是就是分成多个Batch 来进行训练。</p>
-<h4 id="Batch"><a href="#Batch" class="headerlink" title="Batch"></a>Batch</h4><p>批 / 一批样本。</p>
+<h4 id="Batch"><a href="#Batch" class="headerlink" title="Batch"></a>Batch</h4><p>批 &#x2F; 一批样本。</p>
 <h4 id="Batch-Size"><a href="#Batch-Size" class="headerlink" title="Batch_Size"></a>Batch_Size</h4><p>每批样本的大小。</p>
 <h4 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h4><p>一次迭代。训练一个Batch就是一次Iteration（这个概念跟程序语言中的迭代器相似）</p>
 <h4 id="Perplexity"><a href="#Perplexity" class="headerlink" title="Perplexity"></a>Perplexity</h4><p>PPL是用在自然语言处理领域（NLP）中，衡量语言模型好坏的指标。它主要是根据每个词来估计一句话出现的概率，并用句子长度作normalize。PPL越小，一句我们期望的sentence出现的概率就越高。</p>
@@ -401,30 +401,30 @@
 <p>结构：</p>
 <ul>
 <li><p>卷积层：使用卷积核来过滤图像的各个小区域。</p>
-<p><img src="image-20230110183519954.png" srcset="/img/loading.gif" lazyload alt="Convolved Feature"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110183519954.png" srcset="/img/loading.gif" lazyload alt="Convolved Feature"></p>
 <p>在具体应用中，往往有多个卷积核，可以认为，每个卷积核代表了一种图像模式，如果某个图像块与此卷积核卷积出的值大，则认为此图像块十分接近于此卷积核。如果我们设计了6个卷积核，可以理解：我们认为这个图像上有6种底层纹理模式，也就是我们用6中基础模式就能描绘出一副图像。</p>
 <p>总结：通过卷积核的过滤提取出图片中局部的特征。</p>
 </li>
 <li><p>池化层：数据降维，避免过拟合。</p>
-<p><img src="image-20230110183642038.png" srcset="/img/loading.gif" lazyload alt="Pooled Feature"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110183642038.png" srcset="/img/loading.gif" lazyload alt="Pooled Feature"></p>
 </li>
 <li><p>全连接层：输出结果。</p>
 <p>在全连接层之前可以有多个卷积层和池化层。</p>
-<p><img src="image-20230108171350085.png" srcset="/img/loading.gif" lazyload alt="Full Connection"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108171350085.png" srcset="/img/loading.gif" lazyload alt="Full Connection"></p>
 </li>
 </ul>
 <h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><p>CNN 和普通的算法大部分都是输入和输出的一一对应，也就是一个输入得到一个输出。不同的输入之间是没有联系的。</p>
 <p>RNN 跟传统神经网络最大的区别在于每次都会将前一次的输出结果，带到下一次的隐藏层中，一起训练。</p>
-<p><img src="image-20230110183721847.png" srcset="/img/loading.gif" lazyload alt="RNN"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110183721847.png" srcset="/img/loading.gif" lazyload alt="RNN"></p>
 <p>问题：短期记忆影响较大，无法处理很长的输入序列；由于依赖前步输出，无法进行并行计算。</p>
 <h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><p>LSTM 可以保留较长序列数据中的“重要信息”，忽略不重要的信息。这样就解决了 RNN 短期记忆的问题。</p>
 <h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><p>Gated Recurrent Unit – GRU 是 LSTM 的一个变体，他主要是在 LSTM 的模型上做了一些简化和调整，在训练数据集比较大的情况下可以节省很多时间。</p>
 <h4 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h4><p>Softmax 是一种激活函数，它可以将一个数值向量归一化为一个概率分布向量，且各个概率之和为1。Softmax 可以用来作为神经网络的最后一层，用于多分类问题的输出。</p>
 <h2 id="Encoder-Decoder-amp-Seq2Seq"><a href="#Encoder-Decoder-amp-Seq2Seq" class="headerlink" title="Encoder-Decoder &amp; Seq2Seq"></a>Encoder-Decoder &amp; Seq2Seq</h2><h4 id="Encoder-Decoder-模型"><a href="#Encoder-Decoder-模型" class="headerlink" title="Encoder-Decoder 模型"></a>Encoder-Decoder 模型</h4><p>不是某种具体的算法，而是一类算法的统称。</p>
 <p>机器学习的核心思路：将现实问题转化为数学问题，通过求解数学问题，从而解决现实问题。</p>
-<p><img src="image-20230108110644217.png" srcset="/img/loading.gif" lazyload alt="Encoder"></p>
-<p><img src="image-20230108110653654.png" srcset="/img/loading.gif" lazyload alt="Decoder"></p>
-<p><img src="image-20230108110713934.png" srcset="/img/loading.gif" lazyload alt="Encoder-Decoder"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108110644217.png" srcset="/img/loading.gif" lazyload alt="Encoder"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108110653654.png" srcset="/img/loading.gif" lazyload alt="Decoder"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108110713934.png" srcset="/img/loading.gif" lazyload alt="Encoder-Decoder"></p>
 <p>需要说明的点：</p>
 <ol>
 <li>无论输入输出长度如何，中间的向量C长度固定（这也是缺陷）。</li>
@@ -434,7 +434,7 @@
 <ul>
 <li>text - text</li>
 <li>audio - text</li>
-<li>image/video - text</li>
+<li>image&#x2F;video - text</li>
 </ul>
 <h4 id="Seq2Seq"><a href="#Seq2Seq" class="headerlink" title="Seq2Seq"></a>Seq2Seq</h4><p>字面意思，输入一个序列，输出一个序列。</p>
 <p>特点：输入序列和输出序列的长度可变。</p>
@@ -444,7 +444,7 @@
 <h4 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h4><h5 id="Encoder-Decoder-模型的缺陷："><a href="#Encoder-Decoder-模型的缺陷：" class="headerlink" title="Encoder-Decoder 模型的缺陷："></a>Encoder-Decoder 模型的缺陷：</h5><p>Encoder 和 Decoder 之间只有一个向量 C 来传递信息，且 C 的长度固定 → 输入信息过长时，会丢失掉一部分信息。</p>
 <p>Attention 机制就是为了解决”信息过长，信息丢失”的问题。</p>
 <h5 id="引入了-Attention-机制的-Encoder-Decoder-模型"><a href="#引入了-Attention-机制的-Encoder-Decoder-模型" class="headerlink" title="引入了 Attention 机制的 Encoder-Decoder 模型"></a>引入了 Attention 机制的 Encoder-Decoder 模型</h5><p>Encoder 不再将整个输入序列编码为固定长度的中间向量 C，而是编码为一个向量的序列。</p>
-<p><img src="image-20230108121728990.png" srcset="/img/loading.gif" lazyload alt="Encoder-Decoder with attention"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108121728990.png" srcset="/img/loading.gif" lazyload alt="Encoder-Decoder with attention"></p>
 <p>在产生每一个输出的时候，都能够做到充分利用输入序列所携带的信息。</p>
 <p>那么，什么是 Attention 机制？</p>
 <h2 id="Attention-机制"><a href="#Attention-机制" class="headerlink" title="Attention 机制"></a>Attention 机制</h2><h4 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h4><p>关注全部 → 关注重点。</p>
@@ -453,25 +453,25 @@
 <h5 id="效果好"><a href="#效果好" class="headerlink" title="效果好"></a>效果好</h5><p>Attention 机制引入之前：就像是遥远的记忆会变得模糊一样，长距离的信息会被弱化。</p>
 <p>Attention 机制引入之后：挑重点进行处理，文本较长不妨碍抓住重点。</p>
 <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>简单理解：encoder 层的输出经过加权平均后再输入到 decoder 层中。</p>
-<p><img src="image-20230108124359908.png" srcset="/img/loading.gif" lazyload alt="Attention"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108124359908.png" srcset="/img/loading.gif" lazyload alt="Attention"></p>
 <ol>
 <li>对 query 和 key 进行相似度计算，得到权值；</li>
 <li>将权值进行归一化，得到直接可用的权重；</li>
 <li>将权重和 value 进行加权求和。</li>
 </ol>
-<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><p><img src="image-20230108124824075.png" srcset="/img/loading.gif" lazyload alt="Attention种类"></p>
+<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><p><img src="/2023/01/10/LanguageModels/image-20230108124824075.png" srcset="/img/loading.gif" lazyload alt="Attention种类"></p>
 <h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><h4 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h4><p>左边被”N×“的为 Encoder，右边被“N×”的为 Decoder。</p>
-<p><img src="image-20230108182646123.png" srcset="/img/loading.gif" lazyload alt="Transformer"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108182646123.png" srcset="/img/loading.gif" lazyload alt="Transformer"></p>
 <h4 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h4><p>表达元素内部之间的 attention 关系，输入之间的 QKV 会互相影响。</p>
 <h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>”多头“：对同一key、value、query抽取不同信息，相当于平行复制后随机初始化参数，从而使每个 self-attention 模块具有不同的假设空间。</p>
 <p>使用多个独立的 Attention 池化，合并每个 head 的输出得到最终输出。</p>
 <p>目的：这种结构设计能让每个注意力机制通过 QKV 映射到不同的空间去学习特征，去优化每个词汇的不同特征部分，从而均衡同一种注意力机制可能产生的偏差，让词义拥有来自更多元的表达，实验表明可以从而提升模型效果。</p>
-<p><img src="image-20230108174515578.png" srcset="/img/loading.gif" lazyload alt="Multi-Head Attention"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108174515578.png" srcset="/img/loading.gif" lazyload alt="Multi-Head Attention"></p>
 <h4 id="Masked-Multi-Head-Attention"><a href="#Masked-Multi-Head-Attention" class="headerlink" title="Masked Multi-Head Attention"></a>Masked Multi-Head Attention</h4><p>Decoder 对序列中某个元素进行输出时，不应该考虑该元素之后的元素。</p>
 <p>↓ 通过掩码实现</p>
 <p>计算 $x_i$ 输出时，假装当前序列长度为 $i$。</p>
 <h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>除了注意力子层，编码器和解码器中的每一层都包含一个全连接的前馈网络，该网络分别且相同地应用于每个位置。这包括两个线性转换，中间有一个 ReLu 激活。</p>
-<p><img src="image-20230108183006265.png" srcset="/img/loading.gif" lazyload alt="Feed-Forward"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108183006265.png" srcset="/img/loading.gif" lazyload alt="Feed-Forward"></p>
 <p>作用：将输入形状由 (b, n, d) 变换为 (bn, d)、输出形状由 (bn, d) 变换为 (b, n, d)。避免了n 的变化导致的输入维度不稳定。</p>
 <p>b: batchsize，多少个句子；</p>
 <p>n: 序列长度，句子中有多少个字；</p>
@@ -488,12 +488,12 @@
 <h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>Transformer 中的输入由 Word Embedding 和 Positional Embedding 相加得到。</p>
 <h5 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h5><p>使用 Word2Vec、Glove等算法预训练得到，也可以在 Transformer 中训练得到。</p>
 <h5 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h5><p>表示单词出现在句子中的位置。</p>
-<p><img src="image-20230108200234061.png" srcset="/img/loading.gif" lazyload alt="Positional Embedding"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230108200234061.png" srcset="/img/loading.gif" lazyload alt="Positional Embedding"></p>
 <p>pos 表示单词在句中的位置，d 表示 PE 的维度（与 Word Embedding 一致），2i 表示偶数维度，2i+1 表示奇数维度。</p>
 <p>为什么这样表示？</p>
 <ol>
 <li>使 PE 能够适应比训练集里面所有句子更长的句子，假设训练集里面最长的句子是有 20 个单词，突然来了一个长度为 21 的句子，则使用公式计算的方法可以计算出第 21 位的 Embedding。</li>
-<li>可以让模型容易地计算出相对位置，对于固定长度的间距 k，PE(pos+k) 可以用 PE(pos) 计算得到。因为 Sin(A+B) = Sin(A)Cos(B) + Cos(A)Sin(B), Cos(A+B) = Cos(A)Cos(B) - Sin(A)Sin(B)。</li>
+<li>可以让模型容易地计算出相对位置，对于固定长度的间距 k，PE(pos+k) 可以用 PE(pos) 计算得到。因为 Sin(A+B) &#x3D; Sin(A)Cos(B) + Cos(A)Sin(B), Cos(A+B) &#x3D; Cos(A)Cos(B) - Sin(A)Sin(B)。</li>
 </ol>
 <h2 id="Pre-train-Model"><a href="#Pre-train-Model" class="headerlink" title="Pre-train Model"></a>Pre-train Model</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>标注资源稀缺而无标注资源丰富：某种特殊的任务只存在非常少量的相关训练数据，以至于模型不能从中学习总结到有用的规律。</p>
 <h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><ol>
@@ -521,26 +521,27 @@
 <h6 id="Next-Sentence-Prediction"><a href="#Next-Sentence-Prediction" class="headerlink" title="Next Sentence Prediction"></a>Next Sentence Prediction</h6><p>对 Sentence A 与其之后的 Sentence B 进行训练，其中 B 中50%的数据为 A 的下一条句子，剩余50%的数据为语料库中的随机句子。</p>
 <p>使预训练的模型可以处理需要理解两个句子之间的关系的任务。</p>
 <h5 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h5><p>BERT只使用了Transformer的Encoder模块，原论文中，作者分别用12层和24层Transformer Encoder组装了两套BERT模型，分别是：</p>
-<p><img src="image-20230109201517021.png" srcset="/img/loading.gif" lazyload alt="BERT"></p>
-<p>其中层的数量（即 Transformer Encoder 块的数量）为 L，隐藏层的维度为 H，自注意头的个数为 A。在所有例子中，我们将前馈/过滤器（ Transformer Encoder 端的 feed-forward 层）的维度设置为 4H，即当 H=768 时是 3072；当 H=1024 是 4096。</p>
-<p><img src="image-20230109201814452.png" srcset="/img/loading.gif" lazyload alt="BERT模型"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109201517021.png" srcset="/img/loading.gif" lazyload alt="BERT"></p>
+<p>其中层的数量（即 Transformer Encoder 块的数量）为 L，隐藏层的维度为 H，自注意头的个数为 A。在所有例子中，我们将前馈&#x2F;过滤器（ Transformer Encoder 端的 feed-forward 层）的维度设置为 4H，即当 H&#x3D;768 时是 3072；当 H&#x3D;1024 是 4096。</p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109201814452.png" srcset="/img/loading.gif" lazyload alt="BERT模型"></p>
 <h5 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h5><p>BERT的输入词向量是三个向量之和：</p>
 <ul>
 <li>Token Embedding：词向量。</li>
 <li>Segment Embedding：表明这个词属于哪个句子（NSP 需要两个句子）。</li>
 <li>Position Embedding：学习出来的 embedding 向量。这与 Transformer 不同，Transformer 中是预先设定好的值。</li>
 </ul>
-<p><img src="image-20230109204017869.png" srcset="/img/loading.gif" lazyload alt="Input of BERT"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109204017869.png" srcset="/img/loading.gif" lazyload alt="Input of BERT"></p>
 <h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><p>BERT预训练模型的输出结果，无非就是一个或多个向量。下游任务可以通过精调（改变预训练模型参数）或者特征抽取（不改变预训练模型参数，只是把预训练模型的输出作为特征输入到下游任务）两种方式进行使用。</p>
 <h5 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h5><ul>
 <li>引入了Masked LM，使用双向 LM 做模型预训练；</li>
 <li>为预训练引入了新目标 NSP，它可以学习句子与句子间的关系；</li>
-<li>进一步验证了更大的模型效果更好： 12 —&gt; 24 层；</li>
+<li>进一步验证了更大的模型效果更好： 12 –&gt; 24 层；</li>
 <li>为下游任务引入了很通用的求解框架，不再为任务做模型定制；</li>
 <li>刷新了多项 NLP 任务的记录，引爆了NLP无监督预训练技术。</li>
 </ul>
 <h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
-<li>[MASK]标记在实际预测中不会出现，训练时用过多[MASK]影响模型表现；</li>
+<li><p>[MASK]标记在实际预测中不会出现，训练时用过多[MASK]影响模型表现；</p>
+</li>
 <li><p>每个batch只有15%的token被预测，所以BERT收敛得比 left-to-right 模型要慢（它们会预测每个token）；</p>
 </li>
 <li><p>BERT对硬件资源的消耗巨大，大模型需要16个 tpu，历时四天；更大的模型需要64个 tpu，历时四天。</p>
@@ -552,24 +553,24 @@
 </ul>
 <h4 id="RoBERTa（-A-Robustly-Optimized-BERT-Pretraining-Approach）"><a href="#RoBERTa（-A-Robustly-Optimized-BERT-Pretraining-Approach）" class="headerlink" title="RoBERTa（ A Robustly Optimized BERT Pretraining Approach）"></a>RoBERTa（ A Robustly Optimized BERT Pretraining Approach）</h4><p>从模型上来说，RoBERTa基本没有什么太大创新，主要是改变了预训练的方法。</p>
 <h5 id="静态-Masking-vs-动态-Masking"><a href="#静态-Masking-vs-动态-Masking" class="headerlink" title="静态 Masking vs 动态 Masking"></a>静态 Masking vs 动态 Masking</h5><p>Bert对每一个序列随机选择15%的Tokens替换成[MASK]，但整个训练过程，这15%的Tokens一旦被选择就不再改变。</p>
-<p>RoBERTa一开始把预训练的数据复制10份，每一份都随机选择15%的Tokens进行Masking，也就是说，同样的一句话有10种不同的mask方式。然后每份数据都训练N/10个epoch。这就相当于在这N个epoch的训练中，每个序列的被mask的tokens是会变化的。</p>
-<p><img src="image-20230109234012371.png" srcset="/img/loading.gif" lazyload alt="静态 Masking vs 动态 Masking"></p>
+<p>RoBERTa一开始把预训练的数据复制10份，每一份都随机选择15%的Tokens进行Masking，也就是说，同样的一句话有10种不同的mask方式。然后每份数据都训练N&#x2F;10个epoch。这就相当于在这N个epoch的训练中，每个序列的被mask的tokens是会变化的。</p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109234012371.png" srcset="/img/loading.gif" lazyload alt="静态 Masking vs 动态 Masking"></p>
 <h5 id="with-NSP-vs-without-NSP"><a href="#with-NSP-vs-without-NSP" class="headerlink" title="with NSP vs without NSP"></a>with NSP vs without NSP</h5><p>RoBERTa去除了NSP，而是每次输入连续的多个句子，直到最大长度512（可以跨文章）。这种训练方式叫做（FULL - SENTENCES），而原来的Bert每次只输入两个句子。实验表明在MNLI这种推断句子关系的任务上RoBERTa也能有更好性能。</p>
-<p><img src="image-20230109234442993.png" srcset="/img/loading.gif" lazyload alt="with NSP vs without NSP"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109234442993.png" srcset="/img/loading.gif" lazyload alt="with NSP vs without NSP"></p>
 <h5 id="更大的mini-batch"><a href="#更大的mini-batch" class="headerlink" title="更大的mini-batch"></a>更大的mini-batch</h5><p>原本的 BERTbase 的batch size是256，训练 1M 个steps。RoBERTa 的 batch size 为 8k。作者借鉴了在机器翻译中，用更大的batch size配合更大学习率能提升模型优化速率和模型性能的现象，并且也用实验证明了确实Bert还能用更大的batch size。</p>
-<p><img src="image-20230109235207656.png" srcset="/img/loading.gif" lazyload alt="更大的mini-batch"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109235207656.png" srcset="/img/loading.gif" lazyload alt="更大的mini-batch"></p>
 <h5 id="更多的数据，更长时间的训练"><a href="#更多的数据，更长时间的训练" class="headerlink" title="更多的数据，更长时间的训练"></a>更多的数据，更长时间的训练</h5><p>借鉴 XLNet 用了比 Bert 多10倍的数据，RoBERTa也用了更多的数据，配合更长时间的训练，性能再次提高。</p>
-<p><img src="image-20230109235356087.png" srcset="/img/loading.gif" lazyload alt="更多的数据，更长时间的训练"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230109235356087.png" srcset="/img/loading.gif" lazyload alt="更多的数据，更长时间的训练"></p>
 <h2 id="GPT-系列"><a href="#GPT-系列" class="headerlink" title="GPT 系列"></a>GPT 系列</h2><p>Generative Pre-trained Transformer（GPT）系列是由 OpenAI 提出的一系列非常强大的预训练语言模型。</p>
 <p>GPT模型的训练需要超大的训练语料，超多的模型参数以及超强的计算资源。GPT系列的模型结构秉承了不断堆叠transformer的思想，通过不断的提升训练语料的规模和质量，提升网络的参数数量来完成GPT系列的迭代更新的。GPT也证明了，通过不断的提升模型容量和语料规模，模型的能力是可以不断提升的。</p>
-<p><img src="image-20230110090210989.png" srcset="/img/loading.gif" lazyload alt="GPT系列"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110090210989.png" srcset="/img/loading.gif" lazyload alt="GPT系列"></p>
 <h4 id="GPT-1"><a href="#GPT-1" class="headerlink" title="GPT-1"></a>GPT-1</h4><h5 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h5><p>在 GPT-1 之前，传统的 NLP 模型往往使用大量的数据对有监督的模型进行任务相关的模型训练，而有监督学习的任务存在两个缺点：</p>
 <ol>
 <li>需要大量的标注数据，高质量的标注数据往往很难获得，因为在很多任务中，图像的标签并不是唯一的或者实例标签并不存在明确的边界；</li>
 <li>根据一个任务训练的模型很难泛化到其它任务中，这个模型只能叫做“领域专家”而不是真正的理解了NLP。</li>
 </ol>
 <h5 id="思想-1"><a href="#思想-1" class="headerlink" title="思想"></a>思想</h5><p>先通过在无标签的数据上学习一个生成式的语言模型，然后再根据特定的任务进行微调，即无监督的预训练+有监督的模型微调。</p>
-<h5 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h5><p><img src="image-20230110101334539.png" srcset="/img/loading.gif" lazyload alt="GPT-1"></p>
+<h5 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h5><p><img src="/2023/01/10/LanguageModels/image-20230110101334539.png" srcset="/img/loading.gif" lazyload alt="GPT-1"></p>
 <ul>
 <li>分类任务：将起始和终止token加入到原始序列两端，输入transformer中得到特征向量，最后经过一个全连接得到预测的概率分布；</li>
 <li>自然语言推理：将前提（premise）和假设（hypothesis）通过分隔符（Delimiter）隔开，两端加上起始和终止token。再依次通过transformer和全连接得到预测结果；</li>
@@ -585,12 +586,12 @@
 <p>巨巨巨烧钱：1750亿的参数，31个分工明确的作者，超强算力的计算机（ 285,000 个CPU， 10,000 个 GPU），1200万的训练费用，45TB 的训练数据（维基百科的全部数据只相当于其中的 0.6% ）。</p>
 <h5 id="meta-learning（元学习）"><a href="#meta-learning（元学习）" class="headerlink" title="meta-learning（元学习）"></a>meta-learning（元学习）</h5><p>对于一个少样本的任务来说，模型的初始化值非常重要，从一个好的初始化值作为起点，模型能够更快收敛。</p>
 <p>元学习的核心思想在于通过少量的数据寻找一个合适的初始化范围，使得模型能够在有限的数据集上快速拟合，并获得不错的效果。</p>
-<h5 id="In-context-learning（情境学习）"><a href="#In-context-learning（情境学习）" class="headerlink" title="In-context learning（情境学习）"></a>In-context learning（情境学习）</h5><p><img src="image-20230110121446447.png" srcset="/img/loading.gif" lazyload alt="In-context learning"></p>
+<h5 id="In-context-learning（情境学习）"><a href="#In-context-learning（情境学习）" class="headerlink" title="In-context learning（情境学习）"></a>In-context learning（情境学习）</h5><p><img src="/2023/01/10/LanguageModels/image-20230110121446447.png" srcset="/img/loading.gif" lazyload alt="In-context learning"></p>
 <h5 id="Without-fine-tuning"><a href="#Without-fine-tuning" class="headerlink" title="Without fine-tuning"></a>Without fine-tuning</h5><p>从理论上讲GPT-3也是支持fine-tuning的，但是fine-tuning需要利用海量的标注数据进行训练才能获得比较好的效果，但是这样也会造成对其它未训练过的任务上表现差，所以GPT-3并没有尝试fine-tuning。</p>
 <h5 id="模型容量"><a href="#模型容量" class="headerlink" title="模型容量"></a>模型容量</h5><p>实验结果表明，三个学习方式的效果都会随着模型容量的上升而上升，且few shot &gt; one shot &gt; zero shot。</p>
-<p><img src="image-20230110125804638.png" srcset="/img/loading.gif" lazyload alt="容量upup，准确率upup"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110125804638.png" srcset="/img/loading.gif" lazyload alt="容量upup，准确率upup"></p>
 <h5 id="数据集-2"><a href="#数据集-2" class="headerlink" title="数据集"></a>数据集</h5><p>GPT-3共训练了5个不同的语料，分别是低质量的Common Crawl，高质量的 WebText2，Books1，Books2 和 Wikipedia，GPT-3根据数据集的不同的质量赋予了不同的权值，权值越高的在训练的时候越容易抽样到。</p>
-<p><img src="image-20230110130508351.png" srcset="/img/loading.gif" lazyload alt="不同数据集对应的结果"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110130508351.png" srcset="/img/loading.gif" lazyload alt="不同数据集对应的结果"></p>
 <h5 id="结构-2"><a href="#结构-2" class="headerlink" title="结构"></a>结构</h5><p>GPT-3沿用了GPT-2的结构，但是在网络容量上做了很大的提升，如采用了96层的多头 transformer。</p>
 <h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><ol>
 <li>对于一些命题没有意义的问题，GPT-3不会判断命题有效与否，而是拟合一个没有意义的答案出来；</li>
@@ -611,25 +612,25 @@
 <h5 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h5><p>此前，在 GPT-Neo 和 GPT-J 的训练过程中，EleutherAI 都是通过 TPU Research Cloud (TRC) 访问抢占式 TPU，但想在合理的时间内用 TRC TPU 训练超过数百亿参数的模型是不现实的。</p>
 <p>2021 年 1 月，EleutherAI 宣布与 CoreWeave 达成合作，CoreWeave 承诺为 GPT-NeoX-20B 模型训练提供 GPU 资源。研究者透露，他们在 96 个 A100 上完成了 GPT-NeoX-20B 的训练，训练成本约 86 万美元。</p>
 <h5 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h5><p>GPT-NeoX-20B 总体优于 GPT-J-6B 等，但和 DaVinci 相比还存在一定差距。</p>
-<p><img src="image-20230110145614826.png" srcset="/img/loading.gif" lazyload alt="GPT-NeoX的表现"></p>
-<h4 id="minGPT"><a href="#minGPT" class="headerlink" title="minGPT"></a>minGPT</h4><p><img src="image-20230110150224995.png" srcset="/img/loading.gif" lazyload alt="如果将GPT比作军舰，那么minGPT就像一艘快艇"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110145614826.png" srcset="/img/loading.gif" lazyload alt="GPT-NeoX的表现"></p>
+<h4 id="minGPT"><a href="#minGPT" class="headerlink" title="minGPT"></a>minGPT</h4><p><img src="/2023/01/10/LanguageModels/image-20230110150224995.png" srcset="/img/loading.gif" lazyload alt="如果将GPT比作军舰，那么minGPT就像一艘快艇"></p>
 <p>使用 PyTorch 对 GPT 的重新实现，包括训练和推断。minGPT 试图变得小、干净、可解释和有教育意义，因为目前大多数可用的GPT模型实现可能有点杂乱。minGPT 只有大约300行代码。所要做的就是将一个索引序列输入到一个Transformer中，然后该序列中下一个索引的概率分布出来。作者指出，GPT 中大多数的复杂性只是为了提高效率而巧妙地处理批处理。</p>
 <h2 id="自然语言-编程语言预训练模型（NL-PL）"><a href="#自然语言-编程语言预训练模型（NL-PL）" class="headerlink" title="自然语言-编程语言预训练模型（NL-PL）"></a>自然语言-编程语言预训练模型（NL-PL）</h2><h4 id="CodeBERT"><a href="#CodeBERT" class="headerlink" title="CodeBERT"></a>CodeBERT</h4><p>将BERT应用到了Python、PHP、Java、JavaScript、Go、Ruby等编程语言的代码搜索和生成任务当中。</p>
 <h5 id="自然语言搜索代码"><a href="#自然语言搜索代码" class="headerlink" title="自然语言搜索代码"></a>自然语言搜索代码</h5><p>通过自然语言query查找到所需的代码块的实现和搜索引擎（通过自然语言query来查找所需网页）类似。</p>
 <p>作者在 CodeSearchNet 语料库上对CodeBERT进行了预训练并做微调，这是一个包含了 6 种较为普遍的代码语言（分别为Ruby、JavaScript、Go、Python、Java、PHP）的语料库。最终，在自然语言代码搜索任务中取得了 SOTA 的结果。</p>
-<p><img src="image-20230110171057473.png" srcset="/img/loading.gif" lazyload alt="自然语言搜索代码"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110171057473.png" srcset="/img/loading.gif" lazyload alt="自然语言搜索代码"></p>
 <h5 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h5><p>CodeBERT抓住了自然语言和编程语言之间的语义联系。</p>
-<p><img src="image-20230110171336102.png" srcset="/img/loading.gif" lazyload alt="自然语言生成代码"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110171336102.png" srcset="/img/loading.gif" lazyload alt="自然语言生成代码"></p>
 <h5 id="结构-3"><a href="#结构-3" class="headerlink" title="结构"></a>结构</h5><p>在模型的整体架构上，CodeBERT 并未脱离 BERT 和 Roberta 的思想。和大多数工作类似，作者使用了多层双向 Transformer。</p>
 <p>在预训练阶段，总共设计了两部分输入，一个是自然语言文本，另一个是编程语言的代码。在模型训练的设计上，其主要包括两个目标：</p>
 <ul>
 <li>掩码语言建模（MLM）。将NL-PL对作为输入，随机为NL和PL选择位置进行掩码，然后用特殊的掩码Token进行替换。注意，掩码语言建模的任务是预测出被掩码的原始Token。</li>
 <li>可替换Token检测（Replaced Token Detection (RTD)）。在这部分有两个数据生成器，分别是NL生成器和PL生成器，这两个生成器都用于随机掩码位置集（randomly masked positions）生成合理的备选方案。另外，还有一个学习生成器用来检测一个词是否为原词，其背后原理是一个二进制分类器。</li>
 </ul>
-<p><img src="image-20230110171745068.png" srcset="/img/loading.gif" lazyload alt="模型架构"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110171745068.png" srcset="/img/loading.gif" lazyload alt="模型架构"></p>
 <p>模型训练的最后一步是模型微调，具体操作是在NL-PL任务中使用不同的CodeBERT设置。例如在自然语言代码搜索中，会使用与预训练阶段相同的输入方式。而在代码到文本的生成中，使用编码器-解码器框架，并使用CodeBERT初始化生成模型的编码器。</p>
 <h5 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h5><p>在C#语言上的测试结果：</p>
-<p><img src="image-20230110173002897.png" srcset="/img/loading.gif" lazyload alt="用C#测试泛化能力"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110173002897.png" srcset="/img/loading.gif" lazyload alt="用C#测试泛化能力"></p>
 <p>从这个结果可以看出，相较于 RoBERTa，CodeBERT 能够更好地推广到其他编程语言。不过值得注意的是，模型的效果略低于code2seq，作者认为原因可能是 code2seq 在其抽象语法树中使用组合路径，而CodeBERT仅将原始代码作为输入。</p>
 <h5 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h5><ol>
 <li>首个大型的 NL-PL 预训练模型，且在自然语言代码搜索和代码文档生成两个任务中都达到了SOTA性能；</li>
@@ -640,8 +641,8 @@
 <h5 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h5><p>对2600万个 Python 方法和770万个 methoddocstring 对的大规模并行语料库进行了分析和建模，证明对于文档字符串和方法的生成，PyMT5优于类似大小的自动回归语言模型(GPT-2)。</p>
 <h5 id="数据集-3"><a href="#数据集-3" class="headerlink" title="数据集"></a>数据集</h5><p>由 118k GITHUB 存储库组成，约 27 GB。</p>
 <p>输入序列中的前导注释指示模型输出特征的特定组合，例如。“#target signature and body”指示 PyMT5 要预测签名和正文。</p>
-<p><img src="image-20230110181309905.png" srcset="/img/loading.gif" lazyload alt="PyMT5"></p>
-<h5 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h5><p><img src="image-20230110182104513.png" srcset="/img/loading.gif" lazyload alt="空格 → G"></p>
+<p><img src="/2023/01/10/LanguageModels/image-20230110181309905.png" srcset="/img/loading.gif" lazyload alt="PyMT5"></p>
+<h5 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h5><p><img src="/2023/01/10/LanguageModels/image-20230110182104513.png" srcset="/img/loading.gif" lazyload alt="空格 → G"></p>
 <p>Python 文件的空格替换为字符 G 进行标记，然后将标记的随机子序列替换为编号的掩码，并训练模型返回每个掩码后面跟着它所替换的标记。</p>
 <h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><h4 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h4><p>官方代码和预训练模型：<a target="_blank" rel="noopener" href="https://github.com/google-research/bert">https://github.com/google-research/bert</a></p>
 <p>Google官方推荐的PyTorch BERB版本实现，可加载Google预训练的模型：<a target="_blank" rel="noopener" href="https://github.com/huggingface/pytorch-pretrained-BERT">https://github.com/huggingface/pytorch-pretrained-BERT</a></p>
@@ -868,7 +869,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <!--<i class="iconfont icon-love"></i>--> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
   
