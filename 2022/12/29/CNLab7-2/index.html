@@ -512,11 +512,11 @@
                 
                 <h2 id="Lab7-2-HTTP"><a href="#Lab7-2-HTTP" class="headerlink" title="Lab7-2 HTTP"></a>Lab7-2 HTTP</h2><h4 id="1-Objective"><a href="#1-Objective" class="headerlink" title="1 Objective"></a>1 Objective</h4><p>通过实验了解HTTP(超文本传输协议)的主要信息。HTTP是Web的主要协议。</p>
 <h4 id="2-Steps"><a href="#2-Steps" class="headerlink" title="2 Steps"></a>2 Steps</h4><h5 id="Step-1-Capture-a-Trace"><a href="#Step-1-Capture-a-Trace" class="headerlink" title="Step 1: Capture a Trace"></a>Step 1: Capture a Trace</h5><p>实验手册中提供了本实验的抓包结果，可以直接点击<a target="_blank" rel="noopener" href="https://kevincurran.org/com320/labs/wireshark/trace-http.pcap">链接</a>下载。</p>
-<p><img src="image-20221203071853706.png" srcset="/img/loading.gif" lazyload alt="image-20221203071853706"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203071853706.png" srcset="/img/loading.gif" lazyload alt="image-20221203071853706"></p>
 <h5 id="Step-2-Inspect-the-Trace"><a href="#Step-2-Inspect-the-Trace" class="headerlink" title="Step 2: Inspect the Trace"></a>Step 2: Inspect the Trace</h5><p>我们可以在应用显示过滤器中输入http来只查看http请求或响应包。</p>
-<p><img src="image-20221203071048252.png" srcset="/img/loading.gif" lazyload alt="image-20221203071048252"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203071048252.png" srcset="/img/loading.gif" lazyload alt="image-20221203071048252"></p>
 <p>选择第一个HTTP请求包并展开它的HTTP块，查看其详细信息：</p>
-<p><img src="image-20221203071930276.png" srcset="/img/loading.gif" lazyload alt="image-20221203071930276"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203071930276.png" srcset="/img/loading.gif" lazyload alt="image-20221203071930276"></p>
 <ul>
 <li>“Host”是一个必须有的头部，它标识了服务器的名称（和端口）。</li>
 <li>“User-Agent”描述了浏览器的类型及其功能。</li>
@@ -525,7 +525,7 @@
 <li>“Cache-Control”描述了如何缓存响应。</li>
 </ul>
 <p>选择与第一个HTTP请求包对应的HTTP响应包并展开它的HTTP块，查看其详细信息：</p>
-<p><img src="image-20221203072659127.png" srcset="/img/loading.gif" lazyload alt="image-20221203072659127"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203072659127.png" srcset="/img/loading.gif" lazyload alt="image-20221203072659127"></p>
 <ul>
 <li>“Server”描述了服务器的类型及其功能。</li>
 <li>“Date”和”Last-Modified”描述了响应的时间和内容最后更改的时间。</li>
@@ -533,35 +533,35 @@
 </ul>
 <p><em>What is the format of a header line? Give a simple description that fits the headers you see.</em></p>
 <p><em>对HTTP请求来说，header line由请求方法字段、URL字段和HTTP协议版本字段3个字段组成，它们用空格分隔。</em></p>
-<p><img src="image-20221203073404456.png" srcset="/img/loading.gif" lazyload alt="image-20221203073404456"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203073404456.png" srcset="/img/loading.gif" lazyload alt="image-20221203073404456"></p>
 <p><em>对HTTP响应来说，header line由服务器HTTP协议版本、服务器发回的响应状态代码和状态代码的文本描述3个字段组成，它们用空格分隔。</em></p>
-<p><img src="image-20221203073418051.png" srcset="/img/loading.gif" lazyload alt="image-20221203073418051"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203073418051.png" srcset="/img/loading.gif" lazyload alt="image-20221203073418051"></p>
 <p><em>What headers are used to indicate the kind and length of content that is returned in a response?</em></p>
 <p><em>如图，为”Content-Type”和”Content-Length”。</em></p>
-<p><img src="image-20221203074148726.png" srcset="/img/loading.gif" lazyload alt="image-20221203074148726"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203074148726.png" srcset="/img/loading.gif" lazyload alt="image-20221203074148726"></p>
 <h5 id="Step-3-Content-Caching"><a href="#Step-3-Content-Caching" class="headerlink" title="Step 3: Content Caching"></a>Step 3: Content Caching</h5><p>通过查看抓包结果我们可以发现，抓包结果中的第二个GET包应该是第一个URL的重新获取。这为我们提供了一个查看缓存操作的机会，因为很有可能图像或文档没有更改，因此不需要再次下载，HTTP缓存机制应该能够识别这种机会。现在我们来看看它们是如何工作的。</p>
 <p>选择第一个GET的重新获取的GET，并展开它的HTTP块。</p>
-<p><img src="image-20221203075022337.png" srcset="/img/loading.gif" lazyload alt="image-20221203075022337"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203075022337.png" srcset="/img/loading.gif" lazyload alt="image-20221203075022337"></p>
 <p>现在找到让服务器判断是否需要发送新内容的报头。只有当内容自浏览器上次下载后发生了更改时，服务器才需要发送新内容。为了解决这个问题，浏览器包含一个时间戳，从上一次下载中获取它缓存的内容。这个头没有出现在第一个GET包中，因为我们清除了浏览器缓存，所以浏览器没有以前下载的可以使用的内容。在大多数其他方面，这个请求将与第一次请求相同。</p>
 <p>最后，选择要重新获取的响应包，并查看它的HTTP块。</p>
-<p><img src="image-20221203080007795.png" srcset="/img/loading.gif" lazyload alt="image-20221203080007795"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203080007795.png" srcset="/img/loading.gif" lazyload alt="image-20221203080007795"></p>
 <p>假设缓存按预期工作，此响应将不包含内容。相反，响应的状态代码将是“304 Not Modified”。这将告诉浏览器，内容与以前的副本没有变化，然后可以显示缓存的内容。</p>
 <p><em>What is the name of the header the browser sends to let the server work out whether to send  fresh content?</em></p>
 <p><em>这个报头叫做”If - Modified - Since”，也就是说，它要求服务器发送自给定时间以来是否被修改过的内容(如下图)。</em></p>
-<p><img src="image-20221203075508047.png" srcset="/img/loading.gif" lazyload alt="image-20221203075508047"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203075508047.png" srcset="/img/loading.gif" lazyload alt="image-20221203075508047"></p>
 <p><em>Where exactly does the timestamp value carried by the header come from?</em></p>
 <p><em>时间戳值来自最近下载的内容的“Last-Modified”报头。</em></p>
-<h5 id="Step-4-Complex-Pages"><a href="#Step-4-Complex-Pages" class="headerlink" title="Step 4: Complex Pages"></a>Step 4: Complex Pages</h5><p>现在我们将检查第四个HTTP请求（实验手册中说第三个，但第三个是”/favicon.ico”的GET，这是浏览器请求站点的图标作为浏览器显示的一部分）。这种获取方法适用于更复杂的web页面，其中可能包含嵌入式资源。因此，浏览器将下载初始HTML加上渲染页面所需的所有嵌入式资源，再加上执行页面脚本期间请求的其他资源。正如我们将看到的，单个页面可以涉及多个GET。</p>
+<h5 id="Step-4-Complex-Pages"><a href="#Step-4-Complex-Pages" class="headerlink" title="Step 4: Complex Pages"></a>Step 4: Complex Pages</h5><p>现在我们将检查第四个HTTP请求（实验手册中说第三个，但第三个是”&#x2F;favicon.ico”的GET，这是浏览器请求站点的图标作为浏览器显示的一部分）。这种获取方法适用于更复杂的web页面，其中可能包含嵌入式资源。因此，浏览器将下载初始HTML加上渲染页面所需的所有嵌入式资源，再加上执行页面脚本期间请求的其他资源。正如我们将看到的，单个页面可以涉及多个GET。</p>
 <p>我们可以通过打开一个”统计-HTTP”中的负载分配面板来总结本页的GET，查看这个面板将显示本机向哪些服务器发出了多少请求。</p>
-<p><img src="image-20221203081819906.png" srcset="/img/loading.gif" lazyload alt="image-20221203081819906"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203081819906.png" srcset="/img/loading.gif" lazyload alt="image-20221203081819906"></p>
 <p>我们也可以通过打开一个”统计-HTTP”中的分组计数器面板来总结本页的GET，这个面板显示了请求和响应的类型。</p>
-<p><img src="image-20221203082001645.png" srcset="/img/loading.gif" lazyload alt="image-20221203082001645"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203082001645.png" srcset="/img/loading.gif" lazyload alt="image-20221203082001645"></p>
 <p>可以使用一个网站如谷歌的<a target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed</a>或<a target="_blank" rel="noopener" href="https://www.webpagetest.org/">ebpagetest.org</a>来更详细地了解整个页面加载过程。这些网站将测试已选择的URL，并生成页面加载活动的报告，显示在什么时间获取了什么请求，并给出减少整体页面加载时间的提示。</p>
-<p><a target="_blank" rel="noopener" href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.bilibili.com%2F&amp;form_factor=desktop">使用PageSpeed对B站测试</a>。</p>
-<p><img src="image-20221203083434334.png" srcset="/img/loading.gif" lazyload alt="image-20221203083434334"></p>
+<p><a target="_blank" rel="noopener" href="https://pagespeed.web.dev/report?url=https://www.bilibili.com/&form_factor=desktop">使用PageSpeed对B站测试</a>。</p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221203083434334.png" srcset="/img/loading.gif" lazyload alt="image-20221203083434334"></p>
 <p><a target="_blank" rel="noopener" href="https://www.webpagetest.org/result/221203_AiDc70_9B/">使用ebpagetest.org对泰山学堂官网进行测试</a>。</p>
 <p>得到的瀑布图如下。</p>
-<p><img src="image-20221229192032442.png" srcset="/img/loading.gif" lazyload alt="image-20221229192032442"></p>
+<p><img src="/2022/12/29/CNLab7-2/image-20221229192032442.png" srcset="/img/loading.gif" lazyload alt="image-20221229192032442"></p>
 
                 
               </div>
@@ -779,7 +779,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <!--<i class="iconfont icon-love"></i>--> <a>&</a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <!--<i class="iconfont icon-love"></i>--> <a>&</a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
     </div>
   
   
