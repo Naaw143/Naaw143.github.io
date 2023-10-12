@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.3k 字
         
       </span>
     
@@ -510,22 +510,23 @@
                 <h2 id="Lab4-1-Ethernet"><a href="#Lab4-1-Ethernet" class="headerlink" title="Lab4-1 Ethernet"></a>Lab4-1 Ethernet</h2><h4 id="1-Objective"><a href="#1-Objective" class="headerlink" title="1 Objective"></a>1 Objective</h4><p>了解以太网帧的详细信息。</p>
 <h4 id="2-Requirements"><a href="#2-Requirements" class="headerlink" title="2 Requirements"></a>2 Requirements</h4><p>除Wireshark外，本实验要求能使用ping命令。</p>
 <h4 id="3-Steps"><a href="#3-Steps" class="headerlink" title="3 Steps"></a>3 Steps</h4><h5 id="Step-1-Capture-a-Trace"><a href="#Step-1-Capture-a-Trace" class="headerlink" title="Step 1: Capture a Trace"></a>Step 1: Capture a Trace</h5><ol>
-<li><p>选择一个远程web服务器或其他公共可达的Internet主机，使用ping发送一些ping消息，并检查它是否发送应答。如下图，这里选择了“ping <a target="_blank" rel="noopener" href="http://www.baidu.com”./">www.baidu.com”。</a></p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221129103913595.png" srcset="/img/loading.gif" lazyload alt="image-20221129103913595"></p>
+<li><p>选择一个远程web服务器或其他公共可达的Internet主机，使用ping发送一些ping消息，并检查它是否发送应答。如下图，这里选择了“ping www.baidu.com”。</p>
+<p><img src="image-20221129103913595.png" srcset="/img/loading.gif" lazyload alt="image-20221129103913595"></p>
 </li>
-<li><p>启动Wireshark，用”icmp“过滤器开始抓包，并在选项窗口里勾选”Resolve MAC address“，这样可以转换以太网(MAC)地址以提供供应商信息。取消勾选“混杂”，混杂模式对于在广播网络上窃听发送到&#x2F;来自其他计算机的数据包时很有用，但在本实验中我们只想记录发送到&#x2F;从本计算机发出的数据包。</p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221129114019893.png" srcset="/img/loading.gif" lazyload alt="image-20221129114019893"></p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221129114030347.png" srcset="/img/loading.gif" lazyload alt="image-20221129114030347"></p>
+<li><p>启动Wireshark，用”icmp“过滤器开始抓包，并在选项窗口里勾选”Resolve MAC address“，这样可以转换以太网(MAC)地址以提供供应商信息。取消勾选“混杂”，混杂模式对于在广播网络上窃听发送到/来自其他计算机的数据包时很有用，但在本实验中我们只想记录发送到/从本计算机发出的数据包。</p>
+<p><img src="image-20221129114019893.png" srcset="/img/loading.gif" lazyload alt="image-20221129114019893"></p>
+<p><img src="image-20221129114030347.png" srcset="/img/loading.gif" lazyload alt="image-20221129114030347"></p>
 </li>
 <li><p>抓包开始后，重复上面的ping命令，这样数据包就会被Wireshark记录下来。</p>
 </li>
 <li><p>待ping命令执行完成后，返回Wireshark并停止抓包，得到的结果如下图。</p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221129114503631.png" srcset="/img/loading.gif" lazyload alt="image-20221129114503631"></p>
+<p><img src="image-20221129114503631.png" srcset="/img/loading.gif" lazyload alt="image-20221129114503631"></p>
 </li>
 </ol>
 <h5 id="Step-2-Inspect-the-Trace"><a href="#Step-2-Inspect-the-Trace" class="headerlink" title="Step 2: Inspect the Trace"></a>Step 2: Inspect the Trace</h5><p>选中数据包并查看其结构的详细信息和组成包的字节，如下图，可以看到开了MAC地址解析后，在MAC的源地址和目的地址都有一层解析。</p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221129114716848.png" srcset="/img/loading.gif" lazyload alt="image-20221129114716848"></p>
+<p><img src="image-20221129114716848.png" srcset="/img/loading.gif" lazyload alt="image-20221129114716848"></p>
 <h5 id="Step-3-Ethernet-Frame-Structure"><a href="#Step-3-Ethernet-Frame-Structure" class="headerlink" title="Step 3: Ethernet Frame Structure"></a>Step 3: Ethernet Frame Structure</h5><p><em>To show your understanding of the Ethernet frame format, draw a figure of the ping message that shows the position and size in bytes of the Ethernet header fields.</em></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -533,12 +534,13 @@
 <th>SFD</th>
 <th>Destination Address</th>
 <th>Source Address</th>
-<th>Length&#x2F;Type</th>
+<th>Length/Type</th>
 <th>DATA</th>
 <th>Frame Check Sequence</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>7 Byte</td>
 <td>1 Byte</td>
 <td>6 Byte</td>
@@ -547,23 +549,25 @@
 <td>46~1500 Byte</td>
 <td>4 Byte</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h5 id="Step-4-Scope-of-Ethernet-Addresses"><a href="#Step-4-Scope-of-Ethernet-Addresses" class="headerlink" title="Step 4: Scope of Ethernet Addresses"></a>Step 4: Scope of Ethernet Addresses</h5><p>每个以太网帧都携带一个源地址和目的地址，其中一个地址就是本地电脑地址。它是发送帧的源，接收帧的目的地，那么另一个地址是什么？当我们 ping 一个远程Internet服务器的时候，我们输入的是域名，经过DNS解析后得到IP地址，我们与目的服务器必然不是直接链接的关系，这中间发生了什么呢？</p>
 <p><em>Draw a figure that shows the relative positions of your computer, the router, and the remote server. Label your computer and the router with their Ethernet addresses. Label your computer and the remote  server with their IP addresses. Show where the Ethernet and the rest of the Internet fit on the drawing.</em></p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221130172601068.png" srcset="/img/loading.gif" lazyload alt="image-20221130172601068"></p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221130205448670.png" srcset="/img/loading.gif" lazyload alt="image-20221130205448670"></p>
+<p><img src="image-20221130172601068.png" srcset="/img/loading.gif" lazyload alt="image-20221130172601068"></p>
+<p><img src="image-20221130205448670.png" srcset="/img/loading.gif" lazyload alt="image-20221130205448670"></p>
 <h5 id="Step-5-Broadcast-Frames"><a href="#Step-5-Broadcast-Frames" class="headerlink" title="Step 5: Broadcast Frames"></a>Step 5: Broadcast Frames</h5><p>接下来的部分，可以直接用附件里的”trace-ethernet.pcap”来进行探究。</p>
 <p><em>1. What is the broadcast Ethernet address, written in standard form as Wireshark displays it?</em></p>
 <p>如图可知，地址为 FF:FF:FF:FF:FF:FF 。</p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221130210423289.png" srcset="/img/loading.gif" lazyload alt="image-20221130210423289"></p>
-<p><em>2. Which bit of the Ethernet address is used to determine whether it is unicast or multicast&#x2F;broadcast?</em></p>
+<p><img src="image-20221130210423289.png" srcset="/img/loading.gif" lazyload alt="image-20221130210423289"></p>
+<p><em>2. Which bit of the Ethernet address is used to determine whether it is unicast or multicast/broadcast?</em></p>
 <p>第8个bit（第一个字节的最低位）。</p>
-<p>如果该位为0，则是某台设备的MAC地址，即单播地址；如果该位为1，则是多播地址（组播+广播&#x3D;多播）。</p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221130211047548.png" srcset="/img/loading.gif" lazyload alt="image-20221130211047548"></p>
-<h4 id="4-Explore-on-your-own-IEEE-802-3"><a href="#4-Explore-on-your-own-IEEE-802-3" class="headerlink" title="4 Explore on your own (IEEE 802.3)"></a>4 Explore on your own (IEEE 802.3)</h4><p><em>1. How long are the combined IEEE 802.3 and LLC headers compared to the DIX Ethernet headers? You can use Wireshark to work this out. Note that the Trailer&#x2F;Padding and Checksum may be  shown as part of the header, but they come at the end of the frame.</em></p>
+<p>如果该位为0，则是某台设备的MAC地址，即单播地址；如果该位为1，则是多播地址（组播+广播=多播）。</p>
+<p><img src="image-20221130211047548.png" srcset="/img/loading.gif" lazyload alt="image-20221130211047548"></p>
+<h4 id="4-Explore-on-your-own-IEEE-802-3"><a href="#4-Explore-on-your-own-IEEE-802-3" class="headerlink" title="4 Explore on your own (IEEE 802.3)"></a>4 Explore on your own (IEEE 802.3)</h4><p><em>1. How long are the combined IEEE 802.3 and LLC headers compared to the DIX Ethernet headers? You can use Wireshark to work this out. Note that the Trailer/Padding and Checksum may be  shown as part of the header, but they come at the end of the frame.</em></p>
 <p>IEEE 802.3与DIX Ethernet一样，报头长度为14 bytes。LLC加入了3 bytes的长度，总长度为17 bytes。</p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221130211741035.png" srcset="/img/loading.gif" lazyload alt="image-20221130211741035"></p>
-<p><img src="/2022/12/29/CNLab4-1/image-20221130211758296.png" srcset="/img/loading.gif" lazyload alt="image-20221130211758296"></p>
+<p><img src="image-20221130211741035.png" srcset="/img/loading.gif" lazyload alt="image-20221130211741035"></p>
+<p><img src="image-20221130211758296.png" srcset="/img/loading.gif" lazyload alt="image-20221130211758296"></p>
 <p><em>2. How does the receiving computer know whether the frame is DIX Ethernet or IEEE 802.3? Hint:  you may need to both use Wireshark to look at packet examples and read your text near where the Ethernet formats are described.</em> </p>
 <p>“DIX Ethernet Type”字段和“IEEE 802.3 Length”字段的位置相同。如果该值小于Ox600(1536)，则将其解释为Length值。如果该值大于Ox600(1536)，则将其解释为Type值。</p>
 <p><em>3. If IEEE 802.3 has no Type field, then how is the next higher layer determined? Use Wireshark to  look for the demultiplexing key.</em></p>

@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          4.2k 字
         
       </span>
     
@@ -268,7 +268,7 @@
         
         
         
-          14 分钟
+          21 分钟
         
       </span>
     
@@ -533,104 +533,104 @@
                 <h2 id="Lab7-1-DNS"><a href="#Lab7-1-DNS" class="headerlink" title="Lab7-1 DNS"></a>Lab7-1 DNS</h2><h4 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h4><p>域名系统(DNS)将主机名转换为IP地址，在互联网基础设施中发挥着关键作用。</p>
 <h4 id="2-Steps"><a href="#2-Steps" class="headerlink" title="2 Steps"></a>2 Steps</h4><h5 id="Step-1-nslookup"><a href="#Step-1-nslookup" class="headerlink" title="Step 1: nslookup"></a>Step 1: nslookup</h5><p>简单介绍几种常用的nslookup命令：</p>
 <ul>
-<li><p>“nslookup <a target="_blank" rel="noopener" href="http://www.mit.edu",意为“请给我发送主机www.mit.edu的ip地址”./">www.mit.edu&quot;，意为“请给我发送主机www.mit.edu的IP地址”。</a></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203000122497.png" srcset="/img/loading.gif" lazyload alt="image-20221203000122497"></p>
+<li><p>“nslookup www.mit.edu”，意为“请给我发送主机www.mit.edu的IP地址”。</p>
+<p><img src="image-20221203000122497.png" srcset="/img/loading.gif" lazyload alt="image-20221203000122497"></p>
 </li>
-<li><p>“nslookup –type&#x3D;NS mit.edu”，意为”请把mit.edu的权威DNS的主机名发给我“，当不使用-type选项时，nslookup使用默认值，即查询A类型的记录。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203000137389.png" srcset="/img/loading.gif" lazyload alt="image-20221203000137389"></p>
+<li><p>“nslookup –type=NS mit.edu”，意为”请把mit.edu的权威DNS的主机名发给我“，当不使用-type选项时，nslookup使用默认值，即查询A类型的记录。</p>
+<p><img src="image-20221203000137389.png" srcset="/img/loading.gif" lazyload alt="image-20221203000137389"></p>
 </li>
-<li><p>“nslookup <a target="_blank" rel="noopener" href="http://www.aiit.or.kr/">www.aiit.or.kr</a> bitsy.mit.edu”，使用这个命令，我们将会将查询发送到DNS服务器bitsy.mit.edu，而不是缺省DNS服务器(DNS -prime.poly.edu)，即查询和回复直接发生在我们的查询主机和bitsy.mit.edu之间。</p>
-<p>这里一直显示超时，估计是地域原因（主机<a target="_blank" rel="noopener" href="http://www.aiit.or.kr是韩国高级信息技术学院的web服务器)./">www.aiit.or.kr是韩国高级信息技术学院的web服务器）。</a></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203000222701.png" srcset="/img/loading.gif" lazyload alt="image-20221203000222701"></p>
+<li><p>“nslookup www.aiit.or.kr bitsy.mit.edu”，使用这个命令，我们将会将查询发送到DNS服务器bitsy.mit.edu，而不是缺省DNS服务器(DNS -prime.poly.edu)，即查询和回复直接发生在我们的查询主机和bitsy.mit.edu之间。</p>
+<p>这里一直显示超时，估计是地域原因（主机www.aiit.or.kr是韩国高级信息技术学院的web服务器）。</p>
+<p><img src="image-20221203000222701.png" srcset="/img/loading.gif" lazyload alt="image-20221203000222701"></p>
 </li>
 <li><p>“nslookup –option1 –option2 host-to-find dns-server”是nslookup的一般语法，我们可以看到，nslookup可以在0个、1个、2个或多个选项的情况下运行（dns-server也是可选的）。</p>
 </li>
 </ul>
 <p><em>1. Run nslookup to obtain the IP address of a Web server in Asia. What is the IP address of that server?</em> </p>
-<p><em>如图，获取到”<a target="_blank" rel="noopener" href="http://www.sdu.edu.cn"的IP地址为202.194.7.118（2001:da8:7000:7:202:194:7:118为IPv6地址）。">www.sdu.edu.cn&quot;的IP地址为202.194.7.118（2001:da8:7000:7:202:194:7:118为IPv6地址）。</a></em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203000744223.png" srcset="/img/loading.gif" lazyload alt="image-20221203000744223"></p>
+<p><em>如图，获取到”www.sdu.edu.cn”的IP地址为202.194.7.118（2001:da8:7000:7:202:194:7:118为IPv6地址）。</em></p>
+<p><img src="image-20221203000744223.png" srcset="/img/loading.gif" lazyload alt="image-20221203000744223"></p>
 <p><em>2. Run nslookup to determine the authoritative DNS servers for a university in Europe.</em> </p>
 <p><em>这里选择了剑桥大学。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203051444665.png" srcset="/img/loading.gif" lazyload alt="image-20221203051444665"></p>
+<p><img src="image-20221203051444665.png" srcset="/img/loading.gif" lazyload alt="image-20221203051444665"></p>
 <p><em>3. Run nslookup so that one of the DNS servers obtained in Question 2 is queried for the mail servers for Yahoo! mail. What is its IP address?</em></p>
 <p><em>如下图，这里试了很多个问题2中的DNS服务器都显示找不到，最后就查了剑桥大学来代替了。得到的IP地址为128.232.132.8。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203051742327.png" srcset="/img/loading.gif" lazyload alt="image-20221203051742327"></p>
-<h5 id="Step-2-ipconfig"><a href="#Step-2-ipconfig" class="headerlink" title="Step 2: ipconfig"></a>Step 2: ipconfig</h5><p>ipconfig可以用来显示当前的TCP&#x2F;IP信息，包括本机的地址、DNS服务器地址、适配器类型等，我们使用”ipconfig &#x2F;all”命令来获得以上提到的所有信息。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203052522889.png" srcset="/img/loading.gif" lazyload alt="image-20221203052522889"></p>
-<p>ipconfig对于管理存储在主机中的DNS信息也非常有用，比如我们可以使用”ipconfig &#x2F;displaydns”命令来查看主机缓存的最近获得的DNS记录。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203052837255.png" srcset="/img/loading.gif" lazyload alt="image-20221203052837255"></p>
-<p>我们也可以通过输入”ipconfig &#x2F;flushdns”命令来清除缓存。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203053019621.png" srcset="/img/loading.gif" lazyload alt="image-20221203053019621"></p>
+<p><img src="image-20221203051742327.png" srcset="/img/loading.gif" lazyload alt="image-20221203051742327"></p>
+<h5 id="Step-2-ipconfig"><a href="#Step-2-ipconfig" class="headerlink" title="Step 2: ipconfig"></a>Step 2: ipconfig</h5><p>ipconfig可以用来显示当前的TCP/IP信息，包括本机的地址、DNS服务器地址、适配器类型等，我们使用”ipconfig /all”命令来获得以上提到的所有信息。</p>
+<p><img src="image-20221203052522889.png" srcset="/img/loading.gif" lazyload alt="image-20221203052522889"></p>
+<p>ipconfig对于管理存储在主机中的DNS信息也非常有用，比如我们可以使用”ipconfig /displaydns”命令来查看主机缓存的最近获得的DNS记录。</p>
+<p><img src="image-20221203052837255.png" srcset="/img/loading.gif" lazyload alt="image-20221203052837255"></p>
+<p>我们也可以通过输入”ipconfig /flushdns”命令来清除缓存。</p>
+<p><img src="image-20221203053019621.png" srcset="/img/loading.gif" lazyload alt="image-20221203053019621"></p>
 <p>Step 3: Tracing DNS with Wireshark</p>
-<p>现在我们将通过Wireshark来追踪DNS。首先，使用”ipconfig &#x2F;flushdns”命令来清楚DNS缓存。然后在Wireshark中使用”ip.addr &#x3D;&#x3D; 192.168.254.245”（这里的192.168.56.1是本机IP地址）过滤器（这个过滤器将删除既不从本地主机发出也不发往本地主机的所有数据包）来开始抓包。最后，使用浏览器浏览一个网页，如这里实验手册提供的”<a target="_blank" rel="noopener" href="http://www.ietf.org".抓包结果如下图./">http://www.ietf.org&quot;。抓包结果如下图。</a></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203054524747.png" srcset="/img/loading.gif" lazyload alt="image-20221203054524747"></p>
+<p>现在我们将通过Wireshark来追踪DNS。首先，使用”ipconfig /flushdns”命令来清楚DNS缓存。然后在Wireshark中使用”ip.addr == 192.168.254.245”（这里的192.168.56.1是本机IP地址）过滤器（这个过滤器将删除既不从本地主机发出也不发往本地主机的所有数据包）来开始抓包。最后，使用浏览器浏览一个网页，如这里实验手册提供的”<a target="_blank" rel="noopener" href="http://www.ietf.org&quot;。抓包结果如下图。">http://www.ietf.org&quot;。抓包结果如下图。</a></p>
+<p><img src="image-20221203054524747.png" srcset="/img/loading.gif" lazyload alt="image-20221203054524747"></p>
 <p><em>4. Locate the DNS query and response messages. Are then sent over UDP or TCP?</em>  </p>
 <p><em>如下图，通过UDP发送。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203055016658.png" srcset="/img/loading.gif" lazyload alt="image-20221203055016658"></p>
+<p><img src="image-20221203055016658.png" srcset="/img/loading.gif" lazyload alt="image-20221203055016658"></p>
 <p><em>5. What is the destination port for the DNS query message? What is the source port  of DNS response message?</em> </p>
 <p><em>由下面两图可知，DNS查询消息的目的端口和DNS响应消息的源端口都为53。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203055905381.png" srcset="/img/loading.gif" lazyload alt="image-20221203055905381"></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203055928083.png" srcset="/img/loading.gif" lazyload alt="image-20221203055928083"></p>
+<p><img src="image-20221203055905381.png" srcset="/img/loading.gif" lazyload alt="image-20221203055905381"></p>
+<p><img src="image-20221203055928083.png" srcset="/img/loading.gif" lazyload alt="image-20221203055928083"></p>
 <p><em>6. To what IP address is the DNS query message sent? Use ipconfig to determine the IP address of your local DNS server. Are these two IP addresses the same?</em>  </p>
 <p><em>DNS查询消息发送到的IP地址为192.168.254.245，使用 ipconfig 确定的本地 DNS 服务器的 IP 地址也为192.168.254.245。对比可以发现，二者相同。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203055349865.png" srcset="/img/loading.gif" lazyload alt="image-20221203055349865"></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203055330579.png" srcset="/img/loading.gif" lazyload alt="image-20221203055330579"></p>
+<p><img src="image-20221203055349865.png" srcset="/img/loading.gif" lazyload alt="image-20221203055349865"></p>
+<p><img src="image-20221203055330579.png" srcset="/img/loading.gif" lazyload alt="image-20221203055330579"></p>
 <p><em>7. Examine the DNS query message. What “Type” of DNS query is it? Does the  query message contain any “answers”?</em> </p>
 <p><em>如下图，为A类型（也有AAAA类型），没有答案。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203060313173.png" srcset="/img/loading.gif" lazyload alt="image-20221203060313173"></p>
+<p><img src="image-20221203060313173.png" srcset="/img/loading.gif" lazyload alt="image-20221203060313173"></p>
 <p><em>8. Examine the DNS response message. How many “answers” are provided? What  do each of these answers contain?</em></p>
 <p><em>下面这个例子中，答案数为1，其内容如图。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203060550658.png" srcset="/img/loading.gif" lazyload alt="image-20221203060550658"></p>
+<p><img src="image-20221203060550658.png" srcset="/img/loading.gif" lazyload alt="image-20221203060550658"></p>
 <p><em>9. Consider the subsequent TCP SYN packet sent by your host. Does the destination IP address of the SYN packet correspond to any of the IP addresses provided in the DNS response message?</em> </p>
 <p><em>如下图可知，二者相对应。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203061017800.png" srcset="/img/loading.gif" lazyload alt="image-20221203061017800"></p>
+<p><img src="image-20221203061017800.png" srcset="/img/loading.gif" lazyload alt="image-20221203061017800"></p>
 <p><em>10. This web page contains images. Before retrieving each image, does your host issue new DNS queries?</em> </p>
 <p><em>发起了新的查询，原因可能是图片存放的服务器的域名和之前查询的不一致。</em></p>
-<p>现在我们来练习使用nslookup。首先，先在命令行运行”ipconfig &#x2F;flushdns”以清除缓存。在打开Wireshark开始抓包后，在命令行中输入”nslookup on <a target="_blank" rel="noopener" href="http://www.mit.edu"./">www.mit.edu&quot;。</a></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203062325456.png" srcset="/img/loading.gif" lazyload alt="image-20221203062325456"></p>
+<p>现在我们来练习使用nslookup。首先，先在命令行运行”ipconfig /flushdns”以清除缓存。在打开Wireshark开始抓包后，在命令行中输入”nslookup on www.mit.edu”。</p>
+<p><img src="image-20221203062325456.png" srcset="/img/loading.gif" lazyload alt="image-20221203062325456"></p>
 <p>运行完成后停止抓包，得到结果如下图。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203062555017.png" srcset="/img/loading.gif" lazyload alt="image-20221203062555017"></p>
+<p><img src="image-20221203062555017.png" srcset="/img/loading.gif" lazyload alt="image-20221203062555017"></p>
 <p><em>11. What is the destination port for the DNS query message? What is the source port  of DNS response message?</em> </p>
 <p><em>由下面两图可知，与之前一样，DNS查询消息的目的端口和DNS响应消息的源端口都为53。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203062736314.png" srcset="/img/loading.gif" lazyload alt="image-20221203062736314"></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203062834172.png" srcset="/img/loading.gif" lazyload alt="image-20221203062834172"></p>
+<p><img src="image-20221203062736314.png" srcset="/img/loading.gif" lazyload alt="image-20221203062736314"></p>
+<p><img src="image-20221203062834172.png" srcset="/img/loading.gif" lazyload alt="image-20221203062834172"></p>
 <p><em>12. To what IP address is the DNS query message sent? Is this the IP address of your default local DNS server?</em> </p>
 <p><em>由下图可知，DNS 查询消息发送到的IP地址为192.168.254.245，这与我们之前得到的本地DNS服务器的IP地址相同。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203062950094.png" srcset="/img/loading.gif" lazyload alt="image-20221203062950094"></p>
+<p><img src="image-20221203062950094.png" srcset="/img/loading.gif" lazyload alt="image-20221203062950094"></p>
 <p><em>13. Examine the DNS query message. What “Type” of DNS query is it? Does the  query message contain any “answers”?</em> </p>
 <p><em>如下图，为A类型（也有AAAA类型），没有答案。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203063129764.png" srcset="/img/loading.gif" lazyload alt="image-20221203063129764"></p>
+<p><img src="image-20221203063129764.png" srcset="/img/loading.gif" lazyload alt="image-20221203063129764"></p>
 <p><em>14. Examine the DNS response message. How many “answers” are provided? What do each of these answers contain?</em> </p>
 <p><em>如下图，答案数为3，内容如图。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203063254661.png" srcset="/img/loading.gif" lazyload alt="image-20221203063254661"></p>
+<p><img src="image-20221203063254661.png" srcset="/img/loading.gif" lazyload alt="image-20221203063254661"></p>
 <p><em>15. Provide a screenshot.</em></p>
 <p><em>上面每个问题的回答都带有截图。</em></p>
-<p>现在重复刚刚的实验，不过把命令换为”nslookup –type&#x3D;NS mit.edu”。抓包结果如下。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203064325190.png" srcset="/img/loading.gif" lazyload alt="image-20221203064325190"></p>
+<p>现在重复刚刚的实验，不过把命令换为”nslookup –type=NS mit.edu”。抓包结果如下。</p>
+<p><img src="image-20221203064325190.png" srcset="/img/loading.gif" lazyload alt="image-20221203064325190"></p>
 <p><em>16. To what IP address is the DNS query message sent? Is this the IP address of your default local DNS server?</em> </p>
 <p><em>由下图可知，DNS 查询消息发送到的IP地址为192.168.254.245，这与我们之前得到的本地DNS服务器的IP地址相同。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203064401955.png" srcset="/img/loading.gif" lazyload alt="image-20221203064401955"></p>
+<p><img src="image-20221203064401955.png" srcset="/img/loading.gif" lazyload alt="image-20221203064401955"></p>
 <p><em>17. Examine the DNS query message. What “Type” of DNS query is it? Does the  query message contain any “answers”?</em> </p>
 <p><em>如下图，为NS类型，没有答案。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203064459497.png" srcset="/img/loading.gif" lazyload alt="image-20221203064459497"></p>
+<p><img src="image-20221203064459497.png" srcset="/img/loading.gif" lazyload alt="image-20221203064459497"></p>
 <p><em>18. Examine the DNS response message. What MIT nameservers does the response message provide? Does this response message also provide the IP addresses of the MIT namesers?</em> </p>
 <p><em>如图，提供了麻省理工学院的一系列nameserver。经比对可发现，响应消息里不包含麻省理工学院的IP地址。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203064921225.png" srcset="/img/loading.gif" lazyload alt="image-20221203064921225"></p>
+<p><img src="image-20221203064921225.png" srcset="/img/loading.gif" lazyload alt="image-20221203064921225"></p>
 <p><em>19. Provide a screenshot.</em></p>
 <p><em>上面每个问题的回答都带有截图。</em></p>
-<p>再次重复刚刚的实验，不过把命令换为”nslookup <a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a> bitsy.mit.edu”（这里实验手册给出的命令为”nslookup <a target="_blank" rel="noopener" href="http://www.aiit.or.kr/">www.aiit.or.kr</a> bitsy.mit.edu”，但一直超时（如下图），试了下最后发现改成谷歌可以）。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203065543303.png" srcset="/img/loading.gif" lazyload alt="image-20221203065543303"></p>
+<p>再次重复刚刚的实验，不过把命令换为”nslookup www.google.com bitsy.mit.edu”（这里实验手册给出的命令为”nslookup www.aiit.or.kr bitsy.mit.edu”，但一直超时（如下图），试了下最后发现改成谷歌可以）。</p>
+<p><img src="image-20221203065543303.png" srcset="/img/loading.gif" lazyload alt="image-20221203065543303"></p>
 <p>抓包结果如下。</p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203065758030.png" srcset="/img/loading.gif" lazyload alt="image-20221203065758030"></p>
+<p><img src="image-20221203065758030.png" srcset="/img/loading.gif" lazyload alt="image-20221203065758030"></p>
 <p><em>20. To what IP address is the DNS query message sent? Is this the IP address of your  default local DNS server? If not, what does the IP address correspond to?</em> </p>
 <p><em>由下图可知，DNS 查询消息发送到的IP地址为18.0.72.3，这与我们之前得到的本地DNS服务器的IP地址不同，它对应的是bitsy.mit.edu。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203070205462.png" srcset="/img/loading.gif" lazyload alt="image-20221203070205462"></p>
+<p><img src="image-20221203070205462.png" srcset="/img/loading.gif" lazyload alt="image-20221203070205462"></p>
 <p><em>21. Examine the DNS query message. What “Type” of DNS query is it? Does the  query message contain any “answers”?</em> </p>
 <p><em>如下图，为A类型（也有AAAA类型），没有答案。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203070256432.png" srcset="/img/loading.gif" lazyload alt="image-20221203070256432"></p>
+<p><img src="image-20221203070256432.png" srcset="/img/loading.gif" lazyload alt="image-20221203070256432"></p>
 <p><em>22. Examine the DNS response message. How many “answers” are provided? What  does each of these answers contain?</em> </p>
 <p><em>如下图，答案数为1，内容如图。</em></p>
-<p><img src="/2022/12/29/CNLab7-1/image-20221203070404563.png" srcset="/img/loading.gif" lazyload alt="image-20221203070404563"></p>
+<p><img src="image-20221203070404563.png" srcset="/img/loading.gif" lazyload alt="image-20221203070404563"></p>
 <p><em>23. Provide a screenshot.</em></p>
 <p><em>上面每个问题的回答都带有截图。</em></p>
 
