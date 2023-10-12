@@ -248,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          1.3k 字
         
       </span>
     
@@ -259,7 +259,7 @@
         
         
         
-          11 分钟
+          7 分钟
         
       </span>
     
@@ -522,57 +522,57 @@
               <div class="markdown-body">
                 
                 <h2 id="Lab5-2-ICMP"><a href="#Lab5-2-ICMP" class="headerlink" title="Lab5-2 ICMP"></a>Lab5-2 ICMP</h2><h4 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h4><p>在这个实验中，我们将探索ICMP协议。</p>
-<h4 id="2-Steps"><a href="#2-Steps" class="headerlink" title="2 Steps"></a>2 Steps</h4><h5 id="Step-1-ICMP-and-Ping"><a href="#Step-1-ICMP-and-Ping" class="headerlink" title="Step 1: ICMP and Ping"></a>Step 1: ICMP and Ping</h5><p>让我们从捕获Ping程序生成的数据包开始。首先使用Wireshark开始抓包（使用icmp过滤器），然后在命令行中输入”ping -n 10 www.ust.hk”，待ping程序运行结束后停止抓包。</p>
-<p><img src="image-20221202071122623.png" srcset="/img/loading.gif" lazyload alt="image-20221202071122623"></p>
+<h4 id="2-Steps"><a href="#2-Steps" class="headerlink" title="2 Steps"></a>2 Steps</h4><h5 id="Step-1-ICMP-and-Ping"><a href="#Step-1-ICMP-and-Ping" class="headerlink" title="Step 1: ICMP and Ping"></a>Step 1: ICMP and Ping</h5><p>让我们从捕获Ping程序生成的数据包开始。首先使用Wireshark开始抓包（使用icmp过滤器），然后在命令行中输入”ping -n 10 <a target="_blank" rel="noopener" href="http://www.ust.hk",待ping程序运行结束后停止抓包./">www.ust.hk&quot;，待ping程序运行结束后停止抓包。</a></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202071122623.png" srcset="/img/loading.gif" lazyload alt="image-20221202071122623"></p>
 <p>得到如下结果：</p>
-<p><img src="image-20221202071452425.png" srcset="/img/loading.gif" lazyload alt="image-20221202071452425"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202071452425.png" srcset="/img/loading.gif" lazyload alt="image-20221202071452425"></p>
 <p><em>1. What is the IP address of your host? What is the IP address of the destination host?</em>  </p>
 <p>由下图可知，本机IP为172.25.145.196，目标主机IP为143.89.12.134。</p>
-<p><img src="image-20221202071856801.png" srcset="/img/loading.gif" lazyload alt="image-20221202071856801"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202071856801.png" srcset="/img/loading.gif" lazyload alt="image-20221202071856801"></p>
 <p><em>2. Why is it that an ICMP packet does not have source and destination port numbers?</em> </p>
 <p>因为ICMP是网络层的协议，它不需要传输层TCP或者UDP的承载，直接使用IP数据报承载，因此不需要源端口号和目的端口号，只要源地址和目的地址即可。</p>
 <p><em>3. Examine one of the ping request packets sent by your host. What are the ICMP type and code numbers? What other fields does this ICMP packet have? How many bytes are the checksum, sequence number and identifier fields?</em> </p>
 <p>由下图可知，Type值为8，Code值为0。这个ICMP包中还有校验和、标识符和序列号，各自占了两字节。</p>
-<p><img src="image-20221202072558910.png" srcset="/img/loading.gif" lazyload alt="image-20221202072558910"></p>
-<p><img src="image-20221202073132868.png" srcset="/img/loading.gif" lazyload alt="image-20221202073132868"></p>
-<p><img src="image-20221202073142828.png" srcset="/img/loading.gif" lazyload alt="image-20221202073142828"></p>
-<p><img src="image-20221202073148033.png" srcset="/img/loading.gif" lazyload alt="image-20221202073148033"></p>
-<p><img src="image-20221202073153547.png" srcset="/img/loading.gif" lazyload alt="image-20221202073153547"></p>
-<p><img src="image-20221202073159674.png" srcset="/img/loading.gif" lazyload alt="image-20221202073159674"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202072558910.png" srcset="/img/loading.gif" lazyload alt="image-20221202072558910"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073132868.png" srcset="/img/loading.gif" lazyload alt="image-20221202073132868"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073142828.png" srcset="/img/loading.gif" lazyload alt="image-20221202073142828"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073148033.png" srcset="/img/loading.gif" lazyload alt="image-20221202073148033"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073153547.png" srcset="/img/loading.gif" lazyload alt="image-20221202073153547"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073159674.png" srcset="/img/loading.gif" lazyload alt="image-20221202073159674"></p>
 <p><em>4. Examine the corresponding ping reply packet. What are the ICMP type and code  numbers? What other fields does this ICMP packet have? How many bytes are the  checksum, sequence number and identifier fields?</em></p>
 <p>由下图可知，Type值为0，Code值为0。这个ICMP包中还有校验和、标识符、序列号和响应时间，各自占了两字节。</p>
-<p><img src="image-20221202073421963.png" srcset="/img/loading.gif" lazyload alt="image-20221202073421963"></p>
-<p><img src="image-20221202073433230.png" srcset="/img/loading.gif" lazyload alt="image-20221202073433230"></p>
-<p><img src="image-20221202073438678.png" srcset="/img/loading.gif" lazyload alt="image-20221202073438678"></p>
-<p><img src="image-20221202073443351.png" srcset="/img/loading.gif" lazyload alt="image-20221202073443351"></p>
-<p><img src="image-20221202073448465.png" srcset="/img/loading.gif" lazyload alt="image-20221202073448465"></p>
-<p><img src="image-20221202073459907.png" srcset="/img/loading.gif" lazyload alt="image-20221202073459907"></p>
-<h5 id="Step-2-ICMP-and-Traceroute"><a href="#Step-2-ICMP-and-Traceroute" class="headerlink" title="Step 2: ICMP and Traceroute"></a>Step 2: ICMP and Traceroute</h5><p>使用Wireshark开始抓包（使用icmp过滤器），然后在命令行中输入”tracert www.inria.fr”，待程序运行结束后停止抓包。</p>
-<p><img src="image-20221202075312551.png" srcset="/img/loading.gif" lazyload alt="image-20221202075312551"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073421963.png" srcset="/img/loading.gif" lazyload alt="image-20221202073421963"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073433230.png" srcset="/img/loading.gif" lazyload alt="image-20221202073433230"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073438678.png" srcset="/img/loading.gif" lazyload alt="image-20221202073438678"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073443351.png" srcset="/img/loading.gif" lazyload alt="image-20221202073443351"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073448465.png" srcset="/img/loading.gif" lazyload alt="image-20221202073448465"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202073459907.png" srcset="/img/loading.gif" lazyload alt="image-20221202073459907"></p>
+<h5 id="Step-2-ICMP-and-Traceroute"><a href="#Step-2-ICMP-and-Traceroute" class="headerlink" title="Step 2: ICMP and Traceroute"></a>Step 2: ICMP and Traceroute</h5><p>使用Wireshark开始抓包（使用icmp过滤器），然后在命令行中输入”tracert <a target="_blank" rel="noopener" href="http://www.inria.fr",待程序运行结束后停止抓包./">www.inria.fr&quot;，待程序运行结束后停止抓包。</a></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202075312551.png" srcset="/img/loading.gif" lazyload alt="image-20221202075312551"></p>
 <p>得到如下结果：</p>
-<p><img src="image-20221202075413742.png" srcset="/img/loading.gif" lazyload alt="image-20221202075413742"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202075413742.png" srcset="/img/loading.gif" lazyload alt="image-20221202075413742"></p>
 <p><em>5. What is the IP address of your host? What is the IP address of the target  destination host?</em>  </p>
 <p>由下图可知，本机IP为172.25.145.196，目标主机IP为128.93.162.83。</p>
-<p><img src="image-20221202075943982.png" srcset="/img/loading.gif" lazyload alt="image-20221202075943982"></p>
-<p><em>6. If ICMP sent UDP packets instead (as in Unix/Linux), would the IP protocol number still be 01 for the probe packets? If not, what would it be?</em> </p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202075943982.png" srcset="/img/loading.gif" lazyload alt="image-20221202075943982"></p>
+<p><em>6. If ICMP sent UDP packets instead (as in Unix&#x2F;Linux), would the IP protocol number still be 01 for the probe packets? If not, what would it be?</em> </p>
 <p>这里没有抓取到UDP包，查阅资料得知此时数据包的IP协议号不是 01，是17。</p>
 <p><em>7. Examine the ICMP echo packet in your screenshot. Is this different from the ICMP ping query packets in the first half of this lab? If yes, how so?</em> </p>
 <p>不同，前半部分的ping查询数据包中ICMP报文类型为11，表示数据报过期需要丢弃，返回此ICMP报文警告源主机。</p>
-<p><img src="image-20221202081111481.png" srcset="/img/loading.gif" lazyload alt="image-20221202081111481"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202081111481.png" srcset="/img/loading.gif" lazyload alt="image-20221202081111481"></p>
 <p><em>8. Examine the ICMP error packet in your screenshot. It has more fields than the  ICMP echo packet. What is included in those fields?</em> </p>
 <p>由对比可知，错误的数据包多了请求数据包内容。</p>
-<p><img src="image-20221202082019225.png" srcset="/img/loading.gif" lazyload alt="image-20221202082019225"></p>
-<p><img src="image-20221202081811394.png" srcset="/img/loading.gif" lazyload alt="image-20221202081811394"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202082019225.png" srcset="/img/loading.gif" lazyload alt="image-20221202082019225"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202081811394.png" srcset="/img/loading.gif" lazyload alt="image-20221202081811394"></p>
 <p><em>9. Examine the last three ICMP packets received by the source host. How are these  packets different from the ICMP error packets? Why are they different?</em> </p>
 <p>区别如上题所述，最后三个包正常收到了回复（感觉这里我抓包有问题，搜了搜看了下一些博主做的实验，发现他们有收到我没有收到的icmp包——Type值为3且标注了端点不可达）。</p>
 <p><em>10. Within the tracert measurements, is there a link whose delay is significantly  longer than others? Refer to the screenshot in Figure 4, is there a link whose  delay is significantly longer than others? On the basis of the router names, can  you guess the location of the two routers on the end of this link?</em></p>
 <p>由下图我们可以发现从第16次请求开始，花费时间一下子增长了很多。</p>
-<p><img src="image-20221202075312551.png" srcset="/img/loading.gif" lazyload alt="image-20221202075312551"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202075312551.png" srcset="/img/loading.gif" lazyload alt="image-20221202075312551"></p>
 <p>使用<a target="_blank" rel="noopener" href="https://ip.cn/ip/62.40.124.204.html">IP 地址查询</a>查询该IP可以发现其所在地理位置为英国。一直到第19个请求，IP所在的地理位置都为英国。</p>
-<p><img src="image-20221202083551548.png" srcset="/img/loading.gif" lazyload alt="image-20221202083551548"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202083551548.png" srcset="/img/loading.gif" lazyload alt="image-20221202083551548"></p>
 <p>从第20个请求起的后续IP及目标主机IP所在的地理位置均在法国。</p>
-<p><img src="image-20221202083815921.png" srcset="/img/loading.gif" lazyload alt="image-20221202083815921"></p>
-<p><img src="image-20221202083924132.png" srcset="/img/loading.gif" lazyload alt="image-20221202083924132"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202083815921.png" srcset="/img/loading.gif" lazyload alt="image-20221202083815921"></p>
+<p><img src="/2022/12/29/CNLab5-2/image-20221202083924132.png" srcset="/img/loading.gif" lazyload alt="image-20221202083924132"></p>
 
                 
               </div>
