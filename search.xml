@@ -4,18 +4,102 @@
   
     
     <entry>
-      <title>有丝分裂</title>
-      <link href="/2024/03/07/240307/"/>
-      <url>/2024/03/07/240307/</url>
+      <title>HCQDL_notes</title>
+      <link href="/2024/03/14/HCQDL/"/>
+      <url>/2024/03/14/HCQDL/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Semiconductor-Defect-Detection-by-Hybrid-Classical-Quantum-Deep-Learning"><a href="#Semiconductor-Defect-Detection-by-Hybrid-Classical-Quantum-Deep-Learning" class="headerlink" title="Semiconductor Defect Detection by Hybrid Classical-Quantum Deep Learning"></a>Semiconductor Defect Detection by Hybrid Classical-Quantum Deep Learning</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><h3 id="Three-main-types-of-defects-晶片缺陷的三种主要类型"><a href="#Three-main-types-of-defects-晶片缺陷的三种主要类型" class="headerlink" title="Three main types of defects  晶片缺陷的三种主要类型"></a>Three main types of defects  晶片缺陷的三种主要类型</h3><ul><li>wafer (晶片) defect map  晶片缺陷图</li><li>defect pattern  缺陷图案</li><li>hotspot  （缺陷）热点</li></ul><h5 id="wafer-defect-map-晶片缺陷图"><a href="#wafer-defect-map-晶片缺陷图" class="headerlink" title="wafer defect map  晶片缺陷图"></a>wafer defect map  晶片缺陷图</h5><p>visualize the distribution of defect patterns &amp; identify potential process and tool issues.</p><p>看在哪儿，全局，定位问题大致原因</p><p><img src="/2024/03/14/HCQDL/image-20231027225243254.png" alt="wafer defect map"></p><h5 id="defect-pattern"><a href="#defect-pattern" class="headerlink" title="defect pattern"></a>defect pattern</h5><p>the unit that composes the wafer map.</p><p>Each defect pattern signals the root cause</p><p>使用更高分辨率工具获得，从分布找出根本原因，局部</p><p><img src="/2024/03/14/HCQDL/image-20231027225404239.png" alt="defect pattern"></p><h5 id="hotspot"><a href="#hotspot" class="headerlink" title="hotspot"></a>hotspot</h5><p>the region of mask layout patterns where failures are more likely to happen.</p><p>Hotspot  detection is used to check potential circuit failures at the  post optical proximity correction ([OPC]([半导体<a href="https://zhuanlan.zhihu.com/p/671573650">光刻]-光学邻近效应修正-OPC技术； - 知乎 (zhihu.com)</a>)) stage when  transferring designed patterns onto silicon wafers. </p><p>更容易坏的地方（比如晶体边缘）</p><p>热点检测是指在平版印刷过程中，从版面中找出可能导致印刷性问题的热点的过程。</p><p><img src="/2024/03/14/HCQDL/image-20231027230234401.png" alt="hotspot"></p><h3 id="HCQDL-Hybrid-Classical-Quantum-Deep-Learning"><a href="#HCQDL-Hybrid-Classical-Quantum-Deep-Learning" class="headerlink" title="HCQDL (Hybrid Classical-Quantum Deep  Learning)"></a>HCQDL (Hybrid Classical-Quantum Deep  Learning)</h3><p>DL有用，但结果具有概率性&amp;高维数据计算复杂，QC可以改善这些问题，所以提出HCQDL，由经典层和量子层组成。</p><h3 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a>Contributions</h3><ol><li>提出了“自扩散-注意力块”网络架构，能够更有效的提取特征。</li><li>提出了具有不同表达能力和纠缠能力的参数化量子电路并比较、评价。</li><li>为半导体缺陷检测提供了基于电路的混合量子经典深度学习的未来发展路线图。</li></ol><h2 id="2-Related-works"><a href="#2-Related-works" class="headerlink" title="2 Related works"></a>2 Related works</h2><p>DLDR(defect learning and defect review  缺陷学习和缺陷评估) &amp; quantum machine learning backgrounds.</p><h3 id="2-1-DLDR"><a href="#2-1-DLDR" class="headerlink" title="2.1 DLDR"></a>2.1 DLDR</h3><h5 id="Wafer-Defect-Map"><a href="#Wafer-Defect-Map" class="headerlink" title="Wafer Defect Map"></a>Wafer Defect Map</h5><p>很多人用深度学习来通过晶片缺陷图得到晶片是好是坏，if坏→缺陷类型，这也是主流方法。</p><p>我们想结合dl和qc的优势来做。</p><h5 id="defect-pattern-1"><a href="#defect-pattern-1" class="headerlink" title="defect pattern"></a>defect pattern</h5><p>一些越来越好的识别</p><h5 id="hotspot-1"><a href="#hotspot-1" class="headerlink" title="hotspot"></a>hotspot</h5><p>简单介绍了一些热点检测方法的效果</p><h3 id="2-2-Quantum-machine-learning"><a href="#2-2-Quantum-machine-learning" class="headerlink" title="2.2 Quantum machine learning"></a>2.2 Quantum machine learning</h3><p>量子计算发展，最有前途的应用之一：量子机器学习（QML）</p><p>QML最新进展是由一类成为混合量子经典变分算法（hybrid quantum-classical variational algorithms）的算法主导的。</p><h2 id="3-Method"><a href="#3-Method" class="headerlink" title="3 Method"></a>3 Method</h2><p>HCQDL的组成：</p><ul><li>经典层</li><li>量子层</li><li>全连接层</li></ul><p><img src="/2024/03/14/HCQDL/image-20231203094720841.png" alt="HCQDL layers"></p><h6 id="一些pre-knowledge"><a href="#一些pre-knowledge" class="headerlink" title="一些pre-knowledge"></a>一些pre-knowledge</h6><ul><li><p>马尔可夫链：<a href="https://zhuanlan.zhihu.com/p/448575579">简述马尔可夫链</a></p></li><li><p>self-attention：<a href="https://www.bilibili.com/video/BV1v3411r78R/?p=1&vd_source=e14b70f55a47df56fb6ad92445b0313f">自注意力机制 (Self-attention)</a></p></li><li><p>1×1卷积：<a href="https://mp.weixin.qq.com/s/8dA18wPZAcPZBHXbe741Yg">CNN中神奇的1x1卷积</a></p></li><li><p>Bottleneck Transformer：<a href="https://www.bilibili.com/video/BV1i64y1t7WN/?spm_id_from=333.337.search-card.all.click&vd_source=e14b70f55a47df56fb6ad92445b0313f">Bottleneck Transformers for Visual Recognition</a></p><p><img src="/2024/03/14/HCQDL/image-20240308112458989.png" alt="Bottleneck Transformer"></p></li><li><p>小数的二进制↔十进制：<a href="https://blog.csdn.net/qq_44777524/article/details/106061948">小数的二进制与十进制互转</a></p></li><li><p>量子编码：<a href="https://quantumzeitgeist.com/quantum-encoding-an-overview/">Quantum Encoding: An Overview (quantumzeitgeist.com)</a></p></li><li><p>酉门、旋转门：</p><p>酉矩阵：厄米共轭矩阵等于逆矩阵的矩阵。在量子计算中，所有的门操作都必须是酉门，以保证概率的总和为1，即保证量子态的归一性）</p><p>旋转门是一类特定的酉门，通常用于在量子比特上执行旋转操作。旋转门的具体形式通常涉及到参数，这些参数控制了旋转的角度。</p></li><li><p>泡利矩阵：</p><p>泡利矩阵（Pauli matrices）是一组由物理学家Wolfgang Pauli引入的特殊矩阵，它们在量子力学中的描述中起到了重要的作用。这些矩阵是3x3的厄米（Hermitian）矩阵，也是单位矩阵和泡利矩阵的线性组合。这组矩阵通常用来表示自旋和其他角动量的算符。</p><p>泡利矩阵一般表示为：</p><p><img src="/2024/03/14/HCQDL/image-20240310152149990.png" alt="Pauli matrices"></p><p>这里，σx、σy、σz 分别是Pauli X、Pauli Y和Pauli Z矩阵。它们满足以下性质：</p><ol><li>厄米性：每个泡利矩阵都是厄米矩阵，即矩阵的共轭转置等于它本身。</li><li>幺正性：每个泡利矩阵的平方等于单位矩阵，即$σ_i^2$&#x3D;I，其中 i 表示 X、Y 或 Z。</li></ol><p>这些矩阵在量子力学中广泛应用，特别是在描述自旋和角动量时。它们也在量子计算中的一些基本门操作中发挥着关键作用。例如，X、Y、Z 旋转门通常用这些矩阵表示，而 Hadamard 门也可以用它们的组合来表示。</p></li><li><p>Constructive and Destructive Interference：<a href="https://www.phys.uconn.edu/~gibson/Notes/Section5_2/Sec5_2.htm">Constructive and Destructive Interference</a></p></li><li><p>Kronecker 乘积：也被称为张量积，通常用符号⊗表示。在线性代数和量子力学中，Kronecker 乘积是一种矩阵运算，用来组合两个矩阵以形成一个更大的矩阵。</p><p><img src="/2024/03/14/HCQDL/image-20240310162454901.png" alt="Kronecker product"></p></li><li><p>CNOT门：CNOT门（Controlled NOT门）是量子计算中的一种常见的两量子比特门，用于实现量子比特之间的相互作用。它是一个受控门，其中一个量子比特称为控制比特（Control qubit），而另一个是目标比特（Target qubit）。CNOT门的作用是根据控制比特的状态来进行操作。具体来说，如果控制比特处于状态 ∣1⟩∣1⟩，那么目标比特上的 X 门操作（NOT门）将被应用。如果控制比特处于状态 ∣0⟩∣0⟩，则目标比特上的操作不发生变化。CNOT门的矩阵表示为：</p><p><img src="/2024/03/14/HCQDL/image-20240310164646842.png" alt="CNOT Matrix"></p><p>例：</p><p>考虑一个两量子比特系统，初始状态为 ∣<em>ψ</em>⟩&#x3D;∣0⟩⊗∣0⟩（控制比特为 ∣0⟩，目标比特为 ∣0⟩）。应用 CNOT 门后，系统的状态变为：</p><p><img src="/2024/03/14/HCQDL/image-20240310164851609.png" alt="CNOT_1"></p><p>在这里，当控制比特为 ∣0⟩ 时，目标比特的状态不变。</p><p>现在，考虑初始状态为∣<em>ψ</em>⟩&#x3D;∣1⟩⊗∣0⟩（控制比特为∣1⟩，目标比特为∣0⟩）。应用 CNOT 门后，系统的状态变为：</p><p><img src="/2024/03/14/HCQDL/image-20240310164811382.png" alt="CNOT_2"></p><p>这意味着目标比特的状态发生了交换，变为∣1⟩。</p><p>在电路图表示为：</p><p><img src="/2024/03/14/HCQDL/image-20240310165022009.png" alt="CNOT gate"></p></li><li><p>Ablation Study：在深度学习中，Ablation Study 的典型方法是通过逐步去除模型的某些特征、层或模块，然后观察模型性能的变化。通过这样的实验设计，研究人员可以了解模型的哪些部分对任务的关键，哪些部分对性能起到辅助作用，以及哪些部分可能对模型性能贡献较小或负面。</p></li></ul><h3 id="3-1-经典层"><a href="#3-1-经典层" class="headerlink" title="3.1 经典层"></a>3.1 经典层</h3><p>由SP&amp;A（self-proliferation and self-attention）块实现，用于有效提取特征映射。</p><ul><li>self-proliferation block  自扩散块：利用一系列线性变换，以更低的计算成本生成更多的特征映射。</li><li>self-attention block 自注意力块：从生成的特征中学习大量关于长期依赖关系的信息。</li></ul><h4 id="3-1-1-Self-Proliferation-Block-自扩散块"><a href="#3-1-1-Self-Proliferation-Block-自扩散块" class="headerlink" title="3.1.1 Self-Proliferation Block  自扩散块"></a>3.1.1 Self-Proliferation Block  自扩散块</h4><ol><li>少量的卷积操作→n个特征映射</li><li>通过线性变换复制一遍→再得到n个特征映射</li></ol><h4 id="3-1-2-Self-Attention-Block-自注意力块"><a href="#3-1-2-Self-Attention-Block-自注意力块" class="headerlink" title="3.1.2 Self-Attention Block 自注意力块"></a>3.1.2 Self-Attention Block 自注意力块</h4><p>通过聚合其他位置的信息来加强查询位置的特征。</p><p><img src="/2024/03/14/HCQDL/image-20240307203257913.png" alt="Self-Attention Block"></p><h5 id="公式理解"><a href="#公式理解" class="headerlink" title="公式理解"></a>公式理解</h5><ul><li>xi：输入实例的特征映射</li><li>h和w：输入x的高和宽</li><li>we1和we2：1×1卷积，用于瓶颈变换</li><li>wg：全局注意力权重</li><li>LN：归一化层，过滤冗余信息，并对获取的上下文信息进行细化（？）</li></ul><h4 id="3-1-3-Self-Proliferation-and-Attention-Block-总的来说"><a href="#3-1-3-Self-Proliferation-and-Attention-Block-总的来说" class="headerlink" title="3.1.3 Self-Proliferation-and-Attention Block 总的来说"></a>3.1.3 Self-Proliferation-and-Attention Block 总的来说</h4><p><img src="/2024/03/14/HCQDL/image-20240308113026041.png" alt="Self-Proliferation-and-Attention Block"></p><h3 id="3-2-量子层"><a href="#3-2-量子层" class="headerlink" title="3.2 量子层"></a>3.2 量子层</h3><p>由采用连续变量结构的多样的量子电路组成，对电磁场振幅等连续自由度的量子信息进行编码。</p><p><img src="/2024/03/14/HCQDL/image-20240308135844482.png" alt="QC Layer"></p><ul><li>编码电路</li><li>参数化量子电路（PQC）</li><li>测量</li></ul><h4 id="3-2-1-编码电路"><a href="#3-2-1-编码电路" class="headerlink" title="3.2.1 编码电路"></a>3.2.1 编码电路</h4><p>将经典数据编码为量子位状态（希尔伯特空间的物理状态），用于量子计算。</p><h5 id="Basis-Encoding-基编码"><a href="#Basis-Encoding-基编码" class="headerlink" title="Basis Encoding  基编码"></a>Basis Encoding  基编码</h5><p>先转换为二进制，再对应得到（如直接拼接）量子编码。</p><p><img src="/2024/03/14/HCQDL/image-20240309113311185.png" alt="Basis Encoding"></p><h5 id="Amplitude-Encoding-振幅编码"><a href="#Amplitude-Encoding-振幅编码" class="headerlink" title="Amplitude Encoding  振幅编码"></a>Amplitude Encoding  振幅编码</h5><p>振幅编码是一种利用量子叠加原理的编码方式。在这种编码中，信息通过量子态的振幅来表示。一个量子比特可以处于一系列可能的状态的线性组合，每个状态对应一个振幅（这些振幅可以是复数）。</p><p><img src="/2024/03/14/HCQDL/image-20240309113325555.png" alt="Amplitude Encoding"></p><h5 id="Angle-Encoding-角度编码"><a href="#Angle-Encoding-角度编码" class="headerlink" title="Angle Encoding  角度编码"></a>Angle Encoding  角度编码</h5><p>使用角度来表示信息，将量子比特的可能状态对应到球坐标系中。</p><p>考虑一个量子比特，其状态可以用如下形式表示：</p><p><img src="/2024/03/14/HCQDL/image-20240309114720408.png" alt="Angle Encoding"></p><p>其中，<em>θ</em> 是极角，<em>ϕ</em> 是方位角。这个状态可以在Bloch球上找到对应的点（Bloch球是一个球面，其表面上的点对应于量子比特的可能状态）。</p><p><img src="/2024/03/14/HCQDL/image-20240309114810755.png" alt="Angle Encoding"></p><h4 id="3-2-2-参数化量子电路"><a href="#3-2-2-参数化量子电路" class="headerlink" title="3.2.2 参数化量子电路"></a>3.2.2 参数化量子电路</h4><p>参数化量子电路是由固定深度的参数化门组成的量子电路。</p><p>这些电路的自由参数：量子态的旋转角度。</p><p>本工作使用了量子电路，用不同的随机参数重复多次，而不是使用大而复杂的经典神经网络。</p><p>参数化量子电路也由一个量子比特门和可控非门(Controlled NOT门)组成。在PQC中也可以使用一些更复杂的门，这些门可以拆解为一个量子比特门和CNOT门。</p><p>一般来说，一个n量子比特的PQC可以写成：</p><p><img src="/2024/03/14/HCQDL/image-20240310145639106.png" alt="n qubits PQC"></p><ul><li>$\varphi$：代表数据编码后的初始量子状态</li><li>m：量子门数量</li><li>$\theta$：参数集 {𝜃0, 𝜃1,… 𝜃𝑘}</li><li>k：参数总数</li><li>u($\theta$)：一系列酉门</li></ul><p>上面的u($\theta$)可表示为旋转门的形式：</p><p><img src="/2024/03/14/HCQDL/image-20240310151700083.png" alt="rotation gates"></p><p>$\sigma_x$、$\sigma_y$、$\sigma_z$ 是泡利矩阵。</p><p>通过调整参数 <em>θ</em>，可以优化输出态，以逼近所需的量子态。</p><p>为了在附加非线性操作之前实现更好的量子比特纠缠，该模型对有 n 量子比特 PQC 设置 n 个重复层，即通过多次应用参数化电路的层以增强量子比特之间的纠缠效果。</p><p>在不同问题背景下，通过优化参数，PQC 可以试图逼近任意的量子态。</p><p>为了通过协调量子态的干涉效应来实现计算速度的提升，该模型采用了包含 m 个旋转门 Rx 的 n 量子比特 PQC：</p><p><img src="/2024/03/14/HCQDL/image-20240310162137330.png" alt="n qubits PQC with m rotation gates"></p><h3 id="3-3-全连接层"><a href="#3-3-全连接层" class="headerlink" title="3.3 全连接层"></a>3.3 全连接层</h3><p>从PQC中得到所有特征后，将它们输入到一个全连接（FC）层中。</p><p>使用softmax激活函数→FC层的输出将是一个概率分布，概率分布的第 i 项表示了该数据点属于第 i 类的概率。</p><p>通过计算预测标签与实际标签之间的累积距离作为待优化的损失函数来预测实际标签。具体而言，对于每个样本，系统会进行预测并获得一个预测标签，然后，通过计算预测标签与实际标签之间的距离，并将这些距离累积起来，形成了损失函数。</p><p><img src="/2024/03/14/HCQDL/image-20240310172905881.png" alt="Full Connection Layer"></p><ul><li>w1、b1是经典层的参数</li><li>$\theta$ 是量子层参数</li><li>w2、b2是全连接层参数</li></ul><p>重复上述过程已得到最优结果。</p><h2 id="4-Results"><a href="#4-Results" class="headerlink" title="4 Results"></a>4 Results</h2><h3 id="4-1-Experiment-Circuits"><a href="#4-1-Experiment-Circuits" class="headerlink" title="4.1 Experiment Circuits"></a>4.1 Experiment Circuits</h3><p>在深度学习中，将数据转换为更高维度的特征空间是非常有用的。</p><p>在量子计算中，采用两种策略来生成更高维度特征：增加纠缠、使用更多的量子比特。</p><p>然而，由于当前量子计算机研究处于早期阶段，可用的量子比特数量有限→本工作在四量子比特电路系统上采用不同的纠缠策略来验证其方法。</p><p>同时，还使用了多种量子电路设计。</p><h3 id="4-2-Ablation-Study"><a href="#4-2-Ablation-Study" class="headerlink" title="4.2 Ablation Study"></a>4.2 Ablation Study</h3><p>使用不同电路、不同编码方式进行了消融实验，发现如下：</p><ul><li>电路5和电路6的比特排布是全连通图→拥有良好的表达能力和纠缠能力→无论半导体缺陷检测任务如何，电路5和电路6的网络模型都具有较高的精度。</li><li>有着可控Z旋转（CRz）门的电路5和电路16表现优于电路6和电路17，这是因为 CRz 操作在纠缠块中相互对易，因此由 CRz 门组成的有效酉操作可以用较少的唯一生成项来表示，这些项少于这些门的参数数量。</li><li>没有任何控制旋转门的基础电路在四个分类任务中的准确性最低。 这表明，如果要设计参数化量子电路（PQC）以增加可表达性，最好是插入单比特门，将受控门旋转轴偏离控制轴。</li></ul><h3 id="4-3-Experiment-Results"><a href="#4-3-Experiment-Results" class="headerlink" title="4.3 Experiment Results"></a>4.3 Experiment Results</h3><p>效果比之前的好。</p><h2 id="5-Conclusion"><a href="#5-Conclusion" class="headerlink" title="5 Conclusion"></a>5 Conclusion</h2><h5 id="量子深度学习的创新性"><a href="#量子深度学习的创新性" class="headerlink" title="量子深度学习的创新性"></a>量子深度学习的创新性</h5><p>实验旨在突出量子深度学习引入的新特性，包括典型 CNN 结构中卷积层的泛化能力、在半导体缺陷数据集上使用量子电路的能力，以及参数化量子电路引入的特征的潜在用途。</p><h5 id="实验结果表明量子框架优于现有深度学习技术"><a href="#实验结果表明量子框架优于现有深度学习技术" class="headerlink" title="实验结果表明量子框架优于现有深度学习技术"></a>实验结果表明量子框架优于现有深度学习技术</h5><p>研究的实验结果显示，提出的量子框架在半导体缺陷检测任务上表现出色，优于现有的深度学习技术。</p><h5 id="对于量子优势的期望"><a href="#对于量子优势的期望" class="headerlink" title="对于量子优势的期望"></a>对于量子优势的期望</h5><p>基于最近的进展，研究者合理地认为在未来 5-10 年内可以实现量子优势。量子计算机有望提供快速的线性代数处理能力，这理论上能够实现多项式加速，从而允许核方法处理大数据，而不依赖于近似和启发式方法。</p><h5 id="未来挑战和发展方向"><a href="#未来挑战和发展方向" class="headerlink" title="未来挑战和发展方向"></a>未来挑战和发展方向</h5><p>提到了一些未来需要解决的问题，如如何选择参数化电路、如何选择与输入数据混合的随机数，以及如何优化量子比特的数量以获得良好的性能。还强调了将许多现有的深度学习算法转化为混合经典-量子深度学习的潜在价值，以充分利用新特性，如纠缠、叠加和并行计算。</p><h5 id="希望证明量子机器学习的潜力"><a href="#希望证明量子机器学习的潜力" class="headerlink" title="希望证明量子机器学习的潜力"></a>希望证明量子机器学习的潜力</h5><p>表达了对量子机器学习能够为半导体缺陷检测提供令人满意的解决方案的信心。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学业 </category>
+          
+          <category> QC </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>QC_notes</title>
+      <link href="/2024/03/14/qc-notes/"/>
+      <url>/2024/03/14/qc-notes/</url>
       
         <content type="html"><![CDATA[<p>a</p>]]></content>
       
       
       <categories>
           
+          <category> 学业 </category>
+          
+          <category> QC </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>做减法</title>
+      <link href="/2024/03/13/240314/"/>
+      <url>/2024/03/13/240314/</url>
+      
+        <content type="html"><![CDATA[<h4 id="不必用力攥住一切"><a href="#不必用力攥住一切" class="headerlink" title="不必用力攥住一切"></a>不必用力攥住一切</h4><blockquote><p>There’s no need to hold everything tightly</p></blockquote><h4 id="放轻松"><a href="#放轻松" class="headerlink" title="放轻松"></a>放轻松</h4><blockquote><p>Take it easy</p></blockquote><h4 id="手掌摊开才能拥有更多"><a href="#手掌摊开才能拥有更多" class="headerlink" title="手掌摊开才能拥有更多"></a>手掌摊开才能拥有更多</h4><blockquote><p>Spread your palms and you will get more</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
           <category> 杂谈 </category>
           
-          <category> 比较正经的 </category>
+          <category> 比较随意的 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>或许是异想天开</title>
+      <link href="/2024/03/12/nogames/"/>
+      <url>/2024/03/12/nogames/</url>
+      
+        <content type="html"><![CDATA[<p>最近好像玩游戏又变多了，不跟颖颖一块儿自习的上午总是想着玩会儿游戏，这样下去不行，还是得做一些可以提升自己的事情。</p><p>看到这样一个说法，感觉蛮有意思：</p><blockquote><p>每个月给自己定一个‘主题’，这个月的空闲时间都用来做与该‘主题’相关的事情。</p></blockquote><p>试试看先！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+          <category> 比较随意的 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>有丝分裂</title>
+      <link href="/2024/03/07/240307/"/>
+      <url>/2024/03/07/240307/</url>
+      
+        <content type="html"><![CDATA[<p>时间过得好快，转眼大四下都已经开学快两周了。</p><p>最近愈来愈焦虑，焦虑自己的前途，比如读研&#x2F;博会不会顺利、会从事怎样的工作、收入能不能支撑起在上海立足等。</p><p>之前也会想到这些 ，但会大有一种“反正我是凑活着也能活下去那种人”的“大无畏”精神，所以并不怎么会焦虑。现在不一样了，有了要为之负责的人嘛，毕竟跟她在一块儿肯定不能“凑活着”了，便开始担心这些。</p><p>跟颖颖在一块儿后感觉自己分裂成了两部分，一部分比之前更幼稚，总是想腻在她身边做个小孩，一部分比之前更成熟，感受到之前不曾存在的“肩上的责任”，因为想跟她有着更好的未来所以开始认真思考未来。</p><p>但是这几年好像一直会焦虑，因期末考试焦虑，因绩点排名焦虑，因实验室项目进展焦虑，因保研去向焦虑……时至今日，回过头来看，这些当时让自己颇为内耗的焦虑，绝大部分都是没必要的，绝大部分担心的事儿最后都有了满意的结局，希望这次也是吧，虽然这次看起来好像要更遥远一些。</p><p>唉，</p><p>希望一切都会有好结果吧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+          <category> 比较随意的 </category>
           
       </categories>
       
@@ -29,7 +113,7 @@
       <link href="/2024/02/26/todo_list_with_ying/"/>
       <url>/2024/02/26/todo_list_with_ying/</url>
       
-        <content type="html"><![CDATA[<h3 id="美食篇"><a href="#美食篇" class="headerlink" title="美食篇"></a>美食篇</h3><p align="right"><i>你拿筷子，我拿勺子 ~</i></p><ul><li>双创一层烤红薯    √</li><li>泰安街老谢野馄饨</li><li>泰安街腊汁肉夹馍（白吉肉夹馍）</li><li>双创一品生煎（虾仁生煎）</li><li>肘子</li><li>金狮广场4层暖柿</li></ul><h3 id="生活篇"><a href="#生活篇" class="headerlink" title="生活篇"></a>生活篇</h3><p align="right"><i>一起成长为更好的大人吧 ~</i></p><ul><li>蒜蓉粉丝焗大虾</li><li>看韩剧</li><li>走回老家的路</li><li>散步    √</li><li>冬至吃水饺</li><li>看电影</li><li>玩游戏    √</li></ul><h3 id="娱乐篇"><a href="#娱乐篇" class="headerlink" title="娱乐篇"></a>娱乐篇</h3><p align="right"><i>“据报道，今日早些时候，张院长已与王院长达成终身合作伙伴关系，携手助力两院精神病治疗发展。”</i></p><ul><li><p>做手工</p><ul><li><p>拼模型</p></li><li><p>捏橡皮泥</p></li><li><p>…</p></li></ul></li><li><p>元宵节月亮比心合影    √</p></li><li><p>KTV合唱</p></li><li><p>院长交流</p><ul><li>踩影子    √</li><li>给流浪狗起名字，追着它跑或者被它追着跑</li><li>一起发呆</li><li>…</li></ul></li></ul><h3 id="旅行篇"><a href="#旅行篇" class="headerlink" title="旅行篇"></a>旅行篇</h3><p align="right"><i>车慢慢开动时可以欣赏风景，在等车开动的时候可以说说话腻腻歪歪。</i></p><ul><li><p>超短途</p><ul><li><p>学校东门看日出</p></li><li><p>一起看星星</p></li></ul></li><li><p>短途</p><ul><li><p>黄岛电影博物馆</p></li><li><p>有细软沙滩的海边（满足条件地点之一：日照万平口景区）</p></li><li><p>（兼具生活感与美感的）室内展</p></li><li><p>鬼屋</p></li></ul></li><li><p>长途</p><ul><li><p>贺兰山</p></li><li><p>火车旅行</p><ul><li>绿皮火车旅行</li><li>中俄K3雪国列车<ul><li><a href="https://zhuanlan.zhihu.com/p/77259563">国际专列K3之旅：从北京到莫斯科 - 知乎 (zhihu.com)</a></li><li><a href="https://www.bilibili.com/video/BV1nx411G77p/?share_source=copy_web&vd_source=9221c5a37610ea12cb4c42c44b2006c6">K3次国际列车 北京→乌兰巴托→莫斯科 6日5夜火车之旅</a></li></ul></li><li>其他中欧班列<ul><li><a href="https://zhuanlan.zhihu.com/p/230906264">中欧班列运行线路路线图 - 知乎 (zhihu.com)</a></li></ul></li><li>国内火车旅游线路<ul><li><a href="https://zhuanlan.zhihu.com/p/143131507">坐着火车环游中国 | 10条穿越中国东西南北的绝美火车线路大盘点 - 知乎 (zhihu.com)</a></li></ul></li></ul></li><li><p>南极</p></li></ul></li></ul><h3 id="职业体验篇"><a href="#职业体验篇" class="headerlink" title="职业体验篇"></a>职业体验篇</h3><p align="right"><i>想不出放什么好，就用爱你爱你爱你爱你吧</i></p><ul><li>奶茶店</li></ul><h4 id="注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡"><a href="#注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡" class="headerlink" title="注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡~"></a>注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡~</h4>]]></content>
+        <content type="html"><![CDATA[<h3 id="美食篇"><a href="#美食篇" class="headerlink" title="美食篇"></a>美食篇</h3><p align="right"><i>你拿筷子，我拿勺子 ~</i></p><ul><li>双创一层烤红薯    √</li><li>泰安街老谢野馄饨</li><li>泰安街腊汁肉夹馍（白吉肉夹馍）</li><li>双创一品生煎（虾仁生煎）</li><li>肘子</li><li>金狮广场4层暖柿</li></ul><h3 id="生活篇"><a href="#生活篇" class="headerlink" title="生活篇"></a>生活篇</h3><p align="right"><i>一起成长为更好的大人吧 ~</i></p><ul><li>蒜蓉粉丝焗大虾</li><li>看韩剧</li><li>走回老家的路</li><li>散步    √</li><li>冬至吃水饺</li><li>看电影</li><li>玩游戏    √</li></ul><h3 id="娱乐篇"><a href="#娱乐篇" class="headerlink" title="娱乐篇"></a>娱乐篇</h3><p align="right"><i>“据报道，今日早些时候，张院长已与王院长达成终身合作伙伴关系，携手助力两院精神病治疗发展。”</i></p><ul><li><p>做手工</p><ul><li><p>拼模型（精确：乐高积木）</p></li><li><p>捏橡皮泥</p></li><li><p>…</p></li></ul></li><li><p>元宵节月亮比心合影    √</p></li><li><p>KTV合唱</p></li><li><p>院长交流</p><ul><li>踩影子    √</li><li>给流浪狗起名字，追着它跑或者被它追着跑</li><li>一起发呆</li><li>…</li></ul></li></ul><h3 id="旅行篇"><a href="#旅行篇" class="headerlink" title="旅行篇"></a>旅行篇</h3><p align="right"><i>车慢慢开动时可以欣赏风景，在等车开动的时候可以说说话腻腻歪歪。</i></p><ul><li><p>超短途</p><ul><li><p>学校东门看日出</p></li><li><p>一起看星星</p></li></ul></li><li><p>短途</p><ul><li><p>黄岛电影博物馆</p></li><li><p>有细软沙滩的海边（满足条件地点之一：日照万平口景区）</p></li><li><p>（兼具生活感与美感的）室内展</p></li><li><p>鬼屋</p></li></ul></li><li><p>长途</p><ul><li><p>贺兰山</p></li><li><p>火车旅行</p><ul><li>绿皮火车旅行</li><li>中俄K3雪国列车<ul><li><a href="https://zhuanlan.zhihu.com/p/77259563">国际专列K3之旅：从北京到莫斯科 - 知乎 (zhihu.com)</a></li><li><a href="https://www.bilibili.com/video/BV1nx411G77p/?share_source=copy_web&vd_source=9221c5a37610ea12cb4c42c44b2006c6">K3次国际列车 北京→乌兰巴托→莫斯科 6日5夜火车之旅</a></li></ul></li><li>其他中欧班列<ul><li><a href="https://zhuanlan.zhihu.com/p/230906264">中欧班列运行线路路线图 - 知乎 (zhihu.com)</a></li></ul></li><li>国内火车旅游线路<ul><li><a href="https://zhuanlan.zhihu.com/p/143131507">坐着火车环游中国 | 10条穿越中国东西南北的绝美火车线路大盘点 - 知乎 (zhihu.com)</a></li></ul></li></ul></li><li><p>南极</p></li></ul></li></ul><h3 id="职业体验篇"><a href="#职业体验篇" class="headerlink" title="职业体验篇"></a>职业体验篇</h3><p align="right"><i>想不出放什么好，就用爱你爱你爱你爱你吧</i></p><ul><li>奶茶店</li></ul><h4 id="注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡"><a href="#注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡" class="headerlink" title="注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡~"></a>注：打✔不代表该事项已完结，而是代表着“已证明做成该事项的可能性”，所以要在条件允许的情况下多多重复打卡~</h4>]]></content>
       
       
       <categories>
@@ -320,6 +404,8 @@
           
           <category> 学业 </category>
           
+          <category> LLMs </category>
+          
       </categories>
       
       
@@ -366,6 +452,8 @@
           
           <category> 学业 </category>
           
+          <category> LLMs </category>
+          
       </categories>
       
       
@@ -390,6 +478,8 @@
       <categories>
           
           <category> 学业 </category>
+          
+          <category> LLMs </category>
           
       </categories>
       
