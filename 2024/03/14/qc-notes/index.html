@@ -24,7 +24,7 @@
 <meta property="og:description" content="量子计算学习笔记。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-14T00:22:41.000Z">
-<meta property="article:modified_time" content="2024-03-14T00:24:01.373Z">
+<meta property="article:modified_time" content="2024-04-08T13:47:09.503Z">
 <meta property="article:author" content="Ztrura">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1 字
+          554 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -577,7 +577,21 @@
             
               <div class="markdown-body">
                 
-                <p>a</p>
+                <h3 id="0-写在前面"><a href="#0-写在前面" class="headerlink" title="0 写在前面"></a>0 写在前面</h3><p>本笔记目的在于快速入门量子计算以学习量子机器学习，忽略了大量的背景知识、基本概念解释和定理证明（后续时间充裕时会补充），这导致阅读该笔记需对量子计算有一定的了解。</p>
+<h3 id="1-量子计算基础"><a href="#1-量子计算基础" class="headerlink" title="1 量子计算基础"></a>1 量子计算基础</h3><h4 id="1-1-量子比特（Qubits）"><a href="#1-1-量子比特（Qubits）" class="headerlink" title="1.1 量子比特（Qubits）"></a>1.1 量子比特（Qubits）</h4><p>在量子计算中，最基本的单位是量子比特（Qubit）。</p>
+<p>不仅可以处于0或1的状态（|0⟩ 、|1⟩），还可以处于这两种状态的叠加态。</p>
+<h4 id="1-2-量子比特的表示"><a href="#1-2-量子比特的表示" class="headerlink" title="1.2 量子比特的表示"></a>1.2 量子比特的表示</h4><p>一个量子比特的状态可以用复数表示的二维向量表示为：</p>
+<p>|ψ⟩ = α|0⟩ + β|1⟩</p>
+<p>其中 |α|² 和 |β|² 分别表示量子比特处于状态 |0⟩ 和 |1⟩ 的概率（显然概率和须为1）。</p>
+<h4 id="1-1-3-叠加态和相位"><a href="#1-1-3-叠加态和相位" class="headerlink" title="1.1.3 叠加态和相位"></a>1.1.3 叠加态和相位</h4><p>叠加态是量子比特的一个重要特性，它允许量子系统在不同状态之间的线性组合。叠加态的相对比例和相位关系会在量子计算的运算过程中发挥重要作用，决定了计算的结果。</p>
+<ul>
+<li><strong>叠加态</strong>：量子比特可以同时处于0和1的线性组合，这种状态称为叠加态。例如，一个量子比特的叠加态可以表示为 |ψ⟩ = 1/√2 |0⟩ + 1/√2 |1⟩。</li>
+<li><strong>相位</strong>：叠加态中的相位角度决定了不同状态之间的相对比例和相位关系。这些相位角度在量子门操作中起着重要作用，影响着量子计算的结果。</li>
+</ul>
+<h3 id="好吧，整理笔记还是太麻烦了，先写完代码和论文再说吧，咕咕咕……"><a href="#好吧，整理笔记还是太麻烦了，先写完代码和论文再说吧，咕咕咕……" class="headerlink" title="好吧，整理笔记还是太麻烦了，先写完代码和论文再说吧，咕咕咕……"></a>好吧，整理笔记还是太麻烦了，先写完代码和论文再说吧，咕咕咕……</h3><p>注意：</p>
+<p>！绪论ppt第113-125页！</p>
+<p>一些待补充概念：</p>
+<p>朗道原理、与经典对比、</p>
 
                 
               </div>
@@ -678,8 +692,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/13/240314/" title="做减法">
-                        <span class="hidden-mobile">做减法</span>
+                      <a href="/2024/03/12/nogames/" title="或许是异想天开">
+                        <span class="hidden-mobile">或许是异想天开</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

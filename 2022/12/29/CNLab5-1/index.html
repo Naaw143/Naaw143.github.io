@@ -600,41 +600,41 @@
               <div class="markdown-body">
                 
                 <h2 id="Lab5-1-IPv4"><a href="#Lab5-1-IPv4" class="headerlink" title="Lab5-1 IPv4"></a>Lab5-1 IPv4</h2><h4 id="1-Objective"><a href="#1-Objective" class="headerlink" title="1 Objective"></a>1 Objective</h4><p>了解IP (Internet Protocol)的详细信息。</p>
-<h4 id="2-Requirements"><a href="#2-Requirements" class="headerlink" title="2 Requirements"></a>2 Requirements</h4><p>除Wireshark外，本实验要求使用wget和traceroute&#x2F;tracert程序。</p>
+<h4 id="2-Requirements"><a href="#2-Requirements" class="headerlink" title="2 Requirements"></a>2 Requirements</h4><p>除Wireshark外，本实验要求使用wget和traceroute/tracert程序。</p>
 <h4 id="3-Steps"><a href="#3-Steps" class="headerlink" title="3 Steps"></a>3 Steps</h4><h5 id="Step-1-Capture-a-Trace"><a href="#Step-1-Capture-a-Trace" class="headerlink" title="Step 1: Capture a Trace"></a>Step 1: Capture a Trace</h5><ol>
-<li><p>在远程服务器上选择一个URL，并使用wget获取内容，例如“wget <a target="_blank" rel="noopener" href="https://www.uwa.edu.au/%E2%80%9D%E3%80%82">https://www.uwa.edu.au/”。</a></p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202000104434.png" srcset="/img/loading.gif" lazyload alt="image-20221202000104434"></p>
+<li><p>在远程服务器上选择一个URL，并使用wget获取内容，例如“wget <a target="_blank" rel="noopener" href="https://www.uwa.edu.au/”。">https://www.uwa.edu.au/”。</a></p>
+<p><img src="image-20221202000104434.png" srcset="/img/loading.gif" lazyload alt="image-20221202000104434"></p>
 </li>
-<li><p>执行到同一远程服务器的traceroute，以检查是否可以发现有关网络路径的信息。在Windows下执行“tracert <a target="_blank" rel="noopener" href="http://www.uwa.edu.au”./">www.uwa.edu.au”。</a></p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202001107868.png" srcset="/img/loading.gif" lazyload alt="image-20221202001107868"></p>
+<li><p>执行到同一远程服务器的traceroute，以检查是否可以发现有关网络路径的信息。在Windows下执行“tracert www.uwa.edu.au”。</p>
+<p><img src="image-20221202001107868.png" srcset="/img/loading.gif" lazyload alt="image-20221202001107868"></p>
 </li>
 <li><p>启动Wireshark并使用“tcp port 80”的过滤器开始捕获。确保勾选”enable network name resolution”。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202001438461.png" srcset="/img/loading.gif" lazyload alt="image-20221202001438461"></p>
+<p><img src="image-20221202001438461.png" srcset="/img/loading.gif" lazyload alt="image-20221202001438461"></p>
 </li>
 <li><p>在启动捕获之后，重复上面的wget命令，数据包就会被Wireshark记录下来。</p>
 </li>
 <li><p>命令执行完毕后，返回Wireshark，我们可以看到结果如下。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202002421546.png" srcset="/img/loading.gif" lazyload alt="image-20221202002421546"></p>
+<p><img src="image-20221202002421546.png" srcset="/img/loading.gif" lazyload alt="image-20221202002421546"></p>
 </li>
 </ol>
 <h5 id="Step-2-Inspect-the-Trace"><a href="#Step-2-Inspect-the-Trace" class="headerlink" title="Step 2: Inspect the Trace"></a>Step 2: Inspect the Trace</h5><p>选中任意一个数据包，查看它的IP报头的详细信息。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202002650580.png" srcset="/img/loading.gif" lazyload alt="image-20221202002650580"></p>
+<p><img src="image-20221202002650580.png" srcset="/img/loading.gif" lazyload alt="image-20221202002650580"></p>
 <ul>
 <li><p>“Version”为4，是”IPv4”的缘故。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202003359244.png" srcset="/img/loading.gif" lazyload alt="image-20221202003359244"></p>
+<p><img src="image-20221202003359244.png" srcset="/img/loading.gif" lazyload alt="image-20221202003359244"></p>
 </li>
 <li><p>“Header Length”描述了标题长度（可以发现”Version”和”Header Length”字段被打包进了一个字节中）。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202003406998.png" srcset="/img/loading.gif" lazyload alt="image-20221202003406998"></p>
+<p><img src="image-20221202003406998.png" srcset="/img/loading.gif" lazyload alt="image-20221202003406998"></p>
 </li>
 <li><p>“Differentiated Services Field”包含位标识，用来指示是否应该在路由器上以服务质量和拥塞指示来处理包。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202003329063.png" srcset="/img/loading.gif" lazyload alt="image-20221202003329063"></p>
+<p><img src="image-20221202003329063.png" srcset="/img/loading.gif" lazyload alt="image-20221202003329063"></p>
 </li>
 <li><p>“Total Length”字段顾名思义，描述了这部分信息的总长度。</p>
 </li>
 <li><p>“Identification”字段用于在一个大的IP包作为多个称为片段的小片段发送时对片段进行分组。</p>
 </li>
 <li><p>“Flags”和”Fragment Offset”字段，他们紧随”Identification”其后，也与片段有关。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202004037604.png" srcset="/img/loading.gif" lazyload alt="image-20221202004037604"></p>
+<p><img src="image-20221202004037604.png" srcset="/img/loading.gif" lazyload alt="image-20221202004037604"></p>
 </li>
 <li><p>“Time to Live（TTL）”和”Protocol”字段分别描述了持续时间和数据协议类型。</p>
 </li>
@@ -644,49 +644,49 @@
 </li>
 </ul>
 <h5 id="Step-3-IP-Packet-Structure"><a href="#Step-3-IP-Packet-Structure" class="headerlink" title="Step 3: IP Packet Structure"></a>Step 3: IP Packet Structure</h5><p>用如下结构即可回答问题。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202004922050.png" srcset="/img/loading.gif" lazyload alt="image-20221202004922050"></p>
+<p><img src="image-20221202004922050.png" srcset="/img/loading.gif" lazyload alt="image-20221202004922050"></p>
 <p><em>1. What are the IP addresses of your computer and the remote server?</em></p>
 <p>本机IP：111.31.200.210；远程IP：172.25.145.196。</p>
 <p><em>2. Does the Total Length field include the IP header plus IP payload, or just the IP payload?</em> </p>
 <p>只包括IP payload。</p>
 <p><em>3. How does the value of the Identification field change or stay the same for different packets? For  instance, does it hold the same value for all packets in a TCP connection or does it differ for each  packet? Is it the same in both directions? Can you see any pattern if the value does change?</em></p>
 <p>一个连接中所有的包 Identification 都不相同，在不同方向上也不相同，在同一方向上每产生一个数据包会自增 1。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202010501507.png" srcset="/img/loading.gif" lazyload alt="image-20221202010501507"></p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202010511233.png" srcset="/img/loading.gif" lazyload alt="image-20221202010511233"></p>
+<p><img src="image-20221202010501507.png" srcset="/img/loading.gif" lazyload alt="image-20221202010501507"></p>
+<p><img src="image-20221202010511233.png" srcset="/img/loading.gif" lazyload alt="image-20221202010511233"></p>
 <p><em>4. What is the initial value of the TTL field for packets sent from your computer? Is it the maximum  possible value, or some lower value?</em> </p>
 <p>128，不是最大值。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202010627509.png" srcset="/img/loading.gif" lazyload alt="image-20221202010627509"></p>
+<p><img src="image-20221202010627509.png" srcset="/img/loading.gif" lazyload alt="image-20221202010627509"></p>
 <p><em>5. How can you tell from looking at a packet that it has not been fragmented? Most often IP packets in normal operation are not fragmented. But the receiver must have a way to be sure. Hint:  you may need to read your text to confirm a guess.</em> </p>
 <p>如图，设置了”Don’t fragment”。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202010758745.png" srcset="/img/loading.gif" lazyload alt="image-20221202010758745"></p>
+<p><img src="image-20221202010758745.png" srcset="/img/loading.gif" lazyload alt="image-20221202010758745"></p>
 <p><em>6. What is the length of the IP Header and how is this encoded in the header length field? Hint: notice that only 4 bits are used for this field, as the version takes up the other 4 bits of the byte. You may guess and check your text.</em></p>
 <p>如图即可得知长度为20 bytes，编码为0x45。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202011016220.png" srcset="/img/loading.gif" lazyload alt="image-20221202011016220"></p>
+<p><img src="image-20221202011016220.png" srcset="/img/loading.gif" lazyload alt="image-20221202011016220"></p>
 <h5 id="Step-4-Internet-Paths"><a href="#Step-4-Internet-Paths" class="headerlink" title="Step 4: Internet Paths"></a>Step 4: Internet Paths</h5><p>tracert输出通常打印每行一跳的信息，包括测量的往返时间和路由器的IP地址和DNS名称。DNS名称便于确定路由器所属的组织。由于tracert利用了通用路由器实现，所以不能保证它对路径上的所有路由器都有效，当它对路径的某些部分失败时，通常会看到“*”响应。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202001107868.png" srcset="/img/loading.gif" lazyload alt="image-20221202001107868"></p>
+<p><img src="image-20221202001107868.png" srcset="/img/loading.gif" lazyload alt="image-20221202001107868"></p>
 <h5 id="Step-5-IP-Header-Checksum"><a href="#Step-5-IP-Header-Checksum" class="headerlink" title="Step 5: IP Header Checksum"></a>Step 5: IP Header Checksum</h5><p>我们可以通过验证包来探究IP报头校验和计算。首先，选择一个IP报头为20字节的包（这是没有选项时的最小报头大小，可以使这个练习更容易），然后按照以下步骤检查校验和值是否正确：</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202063248656.png" srcset="/img/loading.gif" lazyload alt="image-20221202063248656"></p>
+<p><img src="image-20221202063248656.png" srcset="/img/loading.gif" lazyload alt="image-20221202063248656"></p>
 <ol>
 <li><p>将内容分成10个两个字节(16位)的单词。每个单词将是4个十六进制数字，如这里的第一个单词是”45 00”。</p>
 </li>
 <li><p>使用常规加法将这10个单词相加。这里经加和后得到结果为4486b。</p>
 </li>
-<li><p>从结果中计算1s的补和，取任何前导数字(大于单词大小的4位数)并将它们加回到余数中。如在这里，4486b将变为486b+4&#x3D;486f。</p>
+<li><p>从结果中计算1s的补和，取任何前导数字(大于单词大小的4位数)并将它们加回到余数中。如在这里，4486b将变为486b+4=486f。</p>
 </li>
 <li><p>最终的结果若为Oxffff，则说明验证为正确。这里我们得到的结果为0x486f，不是0xffff，说明验证为不正确。我们可以通过Wireshark来验证我们的计算结果：</p>
 <ol>
 <li><p>在”编辑-首选项-Protocols”中找到IPv4项并打开。</p>
 </li>
 <li><p>勾选”Validate the IPv4 checksum if possible”。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202064645772.png" srcset="/img/loading.gif" lazyload alt="image-20221202064645772"></p>
+<p><img src="image-20221202064645772.png" srcset="/img/loading.gif" lazyload alt="image-20221202064645772"></p>
 </li>
 <li><p>可以看到，刚刚选中的数据包的校验和果然是错误的。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202064841190.png" srcset="/img/loading.gif" lazyload alt="image-20221202064841190"></p>
+<p><img src="image-20221202064841190.png" srcset="/img/loading.gif" lazyload alt="image-20221202064841190"></p>
 </li>
 </ol>
 </li>
-<li><p>（为了有一次验证正确的经历）我们可以重新选一个包来计算，如Wireshark已显示校验和正确的21号包。我们划分单词后可以求得其和为3fffc，将进位加到低位得：fffc+3&#x3D;ffff，即最后得到的结果为0xffff，验证正确。</p>
-<p><img src="/2022/12/29/CNLab5-1/image-20221202065220331.png" srcset="/img/loading.gif" lazyload alt="image-20221202065220331"></p>
+<li><p>（为了有一次验证正确的经历）我们可以重新选一个包来计算，如Wireshark已显示校验和正确的21号包。我们划分单词后可以求得其和为3fffc，将进位加到低位得：fffc+3=ffff，即最后得到的结果为0xffff，验证正确。</p>
+<p><img src="image-20221202065220331.png" srcset="/img/loading.gif" lazyload alt="image-20221202065220331"></p>
 </li>
 </ol>
 
